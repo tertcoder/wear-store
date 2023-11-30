@@ -31,6 +31,9 @@ export default {
         "linear-bg":
           "linear-gradient(261deg, #FDBD8E 8.31%, rgba(255, 174, 115, 0.65) 33.4%, rgba(255, 185, 133, 0.41) 64.8%, rgba(253, 189, 142, 0.21) 83.3%, rgba(253, 189, 142, 0.00) 100%);",
       },
+      boxShadow: {
+        "shdw-main": "0px 4px 20px 0px rgba(40, 35, 28, 0.10);",
+      },
     },
   },
   plugins: [
