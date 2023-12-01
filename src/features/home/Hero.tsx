@@ -4,7 +4,7 @@ import CartIcon from "../../assets/icons/Cart.svg";
 function Hero() {
   return (
     <div className="grid w-full grid-cols-[1fr_500px]  overflow-hidden rounded-[2.5rem] bg-hero-bg">
-      <div className="flex items-center justify-center gap-2.5">
+      <div className="flex items-center justify-center gap-2.5 p-14">
         <div className="flex max-w-md flex-col gap-[3.2rem]">
           <div className="flex flex-col gap-5">
             <h1 className="text-[2.5rem] font-semibold leading-[3rem] tracking-wider text-txt-main">
