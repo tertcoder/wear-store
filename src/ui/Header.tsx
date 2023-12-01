@@ -8,7 +8,7 @@ function Header() {
       <div className="flex items-center  gap-4 rounded-full border border-bd-main bg-btn-gray-bg p-4 shadow-shdw-main">
         <img src={MenuIcon} alt="Menu icon" />
         <span className="font-sans text-lg font-semibold text-txt-main">
-          Homee
+          Home
         </span>
       </div>
 
