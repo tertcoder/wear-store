@@ -1,4 +1,4 @@
-import HeroImg from "../../assets/images/hero.jpg";
+import HeroImg from "../../assets/images/hero.webp";
 import CartIcon from "../../assets/icons/Cart.svg";
 
 function Hero() {
