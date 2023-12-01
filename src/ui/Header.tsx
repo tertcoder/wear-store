@@ -1,6 +1,6 @@
 import Logo from "../assets/icons/Logo.svg";
 import MenuIcon from "../assets/icons/Menu.svg";
-import UserImg from "../assets/images/user.png";
+import UserImg from "../assets/images/user.webp";
 
 function Header() {
   return (

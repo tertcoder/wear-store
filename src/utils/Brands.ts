@@ -1,9 +1,9 @@
-import NikeImg from "../assets/images/Brands/Nike.png";
-import AdidasImg from "../assets/images/Brands/Adidas.png";
-import ReebokImg from "../assets/images/Brands/Reebok.png";
-import VansImg from "../assets/images/Brands/Vans.png";
-import PumaImg from "../assets/images/Brands/Puma.png";
-import OtherImg from "../assets/images/Brands/Other.png";
+import NikeImg from "../assets/images/Brands/Nike.webp";
+import AdidasImg from "../assets/images/Brands/Adidas.webp";
+import ReebokImg from "../assets/images/Brands/Reebok.webp";
+import VansImg from "../assets/images/Brands/Vans.webp";
+import PumaImg from "../assets/images/Brands/Puma.webp";
+import OtherImg from "../assets/images/Brands/Other.webp";
 
 interface brandInterface {
   brand: string;
