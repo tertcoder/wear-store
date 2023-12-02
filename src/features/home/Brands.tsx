@@ -7,9 +7,24 @@ import BtnNav from "../../ui/BtnNav";
 function Brands() {
   const [scrollX, setScrollX] = useState(0);
   const ref = useRef(null);
+  const refP = useRef(null);
 
   function NextMove() {
-    setScrollX;
+    const width = ref.current.clientWidth;
+    const widthP = refP.current.clientWidth;
+
+    const scrolls = Math.ceil(widthP / 225 / 2);
+    console.log(scrolls);
+    if (scrolls < 1 && scrollX > scrolls) setScrollX(0);
+    setScrollX((s) => s + 1);
+    // else
+  }
+  function PrevMove() {
+    const width = ref.current.clientWidth;
+    // const scrolls = Math.ceil(width / 1000);
+    if (scrollX > 0) {
+      setScrollX((s) => s - 1);
+    } else setScrollX(0);
   }
   return (
     <div className="flex w-full max-w-7xl flex-col items-start gap-[0.4rem]  overflow-hidden">
@@ -17,14 +32,17 @@ function Brands() {
         <span className="text-2xl font-medium text-txt-main">Brands</span>
         <img src={LineIcon} alt="Line svg" />
       </div>
-      <div className="relative flex h-24 w-full flex-col justify-center py-[0.625rem]">
+      <div
+        ref={refP}
+        className="relative flex h-24 w-full flex-col justify-center py-[0.625rem]"
+      >
         <div
-          // style={{
-          //   transitionDuration: "300ms",
-          //   translate: `-400px`,
-          // }}
+          style={{
+            transitionDuration: "300ms",
+            translate: `${scrollX * -100}px`,
+          }}
           ref={ref}
-          className="flex max-w-7xl items-center gap-5 overflow-auto border-4"
+          className="flex items-center gap-5 border-4"
         >
           {brands.map((brand) => (
             <div
@@ -45,10 +63,10 @@ function Brands() {
         </div>
 
         <div className="absolute left-4 top-1/2 -translate-y-1/2">
-          <BtnNav icon={PrevIcon} actionType="Previous" />
+          <BtnNav icon={PrevIcon} actionType="Previous" onClick={PrevMove} />
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2">
-          <BtnNav icon={NextIcon} actionType="Next" />
+          <BtnNav icon={NextIcon} actionType="Next" onClick={NextMove} />
         </div>
       </div>
     </div>
