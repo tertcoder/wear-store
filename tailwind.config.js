@@ -34,6 +34,9 @@ export default {
       boxShadow: {
         "shdw-main": "0px 4px 20px 0px rgba(40, 35, 28, 0.10);",
       },
+      borderRadius: {
+        "rd-main": "0.625rem",
+      },
     },
   },
   plugins: [
