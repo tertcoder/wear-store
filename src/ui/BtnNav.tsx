@@ -10,7 +10,7 @@ function BtnNav({
   return (
     <button
       onClick={onClick}
-      className="flex h-12 w-12 items-center justify-center rounded-full bg-btn-white-bg shadow-shdw-main"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-btn-white-bg shadow-shdw-main"
     >
       <img src={icon} alt={`${actionType} Icon`} />
     </button>

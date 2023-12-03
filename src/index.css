@@ -9,4 +9,15 @@
       format("truetype"); */
     src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
   }
+
+  ::-webkit-scrollbar {
+    @apply bg-bd-gray;
+    width: 10px;
+  }
+  .customScroll::-webkit-scrollbar {
+    display: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bd-main;
+  }
 }
