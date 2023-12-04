@@ -12,9 +12,27 @@ import Reebok01 from "../assets/images/Reebok01.png";
 import AirJordanKakty from "../assets/images/AirJordanKakty.png";
 import AirJordan from "../assets/images/AirJordan.png";
 
+export interface shoesInterface {
+  brand: string;
+  created_at: string;
+  description?: string;
+  id: string;
+  image: string;
+  lastPrice?: number;
+  name: string;
+  price: number;
+}
 export interface BrandInterface {
   brand: string;
   image: string;
+}
+export interface ProductInterface {
+  id: number;
+  name: string;
+  brand: string;
+  image: string;
+  price: number;
+  lastPrice?: number;
 }
 
 export const brands: BrandInterface[] = [
@@ -26,14 +44,6 @@ export const brands: BrandInterface[] = [
   { brand: "Other", image: OtherImg },
 ];
 
-export interface ProductInterface {
-  id: number;
-  name: string;
-  brand: string;
-  image: string;
-  price: number;
-  lastPrice?: number;
-}
 export const products: ProductInterface[] = [
   {
     id: 1000 * Math.random(),

@@ -9,30 +9,13 @@ import useScrollXSmooth from "../../hooks/useScrollXSmooth";
 import CollectionItems from "./CollectionItems";
 
 function Collections() {
-  // {
-  // const scrollRef = useRef<HTMLDivElement>(null);
-  //   const scrollTo = (scroll: number) => {
-  //     if (scrollRef.current) {
-  //       scrollRef.current.scrollTo({
-  //         left: scroll,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   };
-  //   const prevMove = () => {
-  //     scrollTo((scrollRef.current?.scrollLeft || 0) - 200);
-  //   };
-  //   const nextMove = () => {
-  //     scrollTo((scrollRef.current?.scrollLeft || 0) + 200);
-  //   };
-  // }
   const { scrollRef, prevMove, nextMove } = useScrollXSmooth();
   return (
     <ScrollContainer>
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col items-start justify-center gap-1 p-2.5">
           <span className="text-2xl font-medium text-txt-main">
-            Collections
+            Our Collections
           </span>
           <img src={LineIcon} alt="Line svg" />
         </div>
