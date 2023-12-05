@@ -12,10 +12,11 @@ export async function getAllShoes(): Promise<shoesInterface[]> {
 }
 
 export async function getShoesForHomePage(): Promise<shoesInterface[]> {
+  // const { data, error } = await supabase.from("shoes").select("*").limit(6);
   const { data, error } = await supabase
     .from("shoes")
     .select("*")
-    .order("random", { referencedTable: "shoes", ascending: false })
+    .order("created_at", { ascending: false })
     .limit(6);
 
   if (error) {

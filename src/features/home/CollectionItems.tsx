@@ -1,12 +1,13 @@
-import { products } from "../../utils/data";
+import useCollectionItems from "./useCollectionitems";
 import HeartIcon from "../../assets/icons/Wishlist.svg";
 import CartIcon from "../../assets/icons/Cart.svg";
 import MoveIcon from "../../assets/icons/Move.svg";
 
 function CollectionItems() {
+  const { data: recentShoes } = useCollectionItems();
   return (
     <div className="flex gap-5 ">
-      {products.map((shoe) => (
+      {recentShoes.data?.map((shoe) => (
         <div
           key={shoe.id}
           style={{
@@ -16,7 +17,7 @@ function CollectionItems() {
           }}
           className="flex h-80 w-60 flex-col justify-between rounded-[1.25rem] border border-bd-gray px-4 py-5"
         >
-          <div className="rounded-rd-main flex flex-col gap-[0.3125rem] bg-[#fff9f5] p-2.5  shadow-shdw-main backdrop-blur-[2px]">
+          <div className="flex flex-col gap-[0.3125rem] rounded-rd-main bg-[#fff9f5] p-2.5  shadow-shdw-main backdrop-blur-[2px]">
             <h3 className="text-lg font-bold text-txt-main">{shoe.name}</h3>
             <p className="text-xs font-medium text-txt-gray">{shoe.price}</p>
           </div>
@@ -29,13 +30,13 @@ function CollectionItems() {
               </span>
               <img src={CartIcon} alt="Add to Cart Icon" />
             </div>
-            <div className="rounded-rd-main flex h-[2.0625rem] w-[2.0625rem] items-center justify-center border border-bd-main bg-btn-white-bg px-0.5 py-[0.1875rem] shadow-shdw-main">
+            <div className="flex h-[2.0625rem] w-[2.0625rem] items-center justify-center rounded-rd-main border border-bd-main bg-btn-white-bg px-0.5 py-[0.1875rem] shadow-shdw-main">
               <img src={HeartIcon} alt="Add to Wishlist Icon" />
             </div>
           </div>
         </div>
       ))}
-      <button className="rounded-rd-main mr-10 flex items-center gap-1 self-center bg-btn-gray-bg px-2.5 py-5">
+      <button className="mr-10 flex items-center gap-1 self-center rounded-rd-main bg-btn-gray-bg px-2.5 py-5">
         <span className="text-sm font-medium" style={{ color: "#65625e" }}>
           More
         </span>
