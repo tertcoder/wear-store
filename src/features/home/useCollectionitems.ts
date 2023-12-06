@@ -2,11 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getShoesForHomePage } from "../../services/apiShoes";
 
 function useCollectionItems() {
-  const data = useQuery({
+  const {
+    isLoading,
+    data: recentShoes,
+    error,
+  } = useQuery({
     queryKey: ["collections"],
     queryFn: getShoesForHomePage,
   });
-  return { data };
+  return { isLoading, recentShoes, error };
 }
 
 export default useCollectionItems;

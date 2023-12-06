@@ -25,3 +25,14 @@ export async function getShoesForHomePage(): Promise<shoesInterface[]> {
   }
   return data;
 }
+
+export async function getBrands() {
+  const { data, error } = await supabase.from("brands").select("*");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Brands cannot be loaded!");
+  }
+
+  return data;
+}
