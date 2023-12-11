@@ -22,7 +22,7 @@ function LatestProduct() {
     >
       <img src={image} alt={`${name}, ${brand}`} />
       {/* */}
-      <div className="relative flex flex-col justify-between overflow-hidden px-[4rem] py-[4.5rem]">
+      <div className="relative flex flex-col justify-center gap-8 overflow-hidden px-[4rem] py-[2rem]">
         <div>
           <h2 className="text-[2.5rem] font-semibold text-txt-main">{name}</h2>
           <span className="itemce flex gap-1">
@@ -34,9 +34,11 @@ function LatestProduct() {
             <span className="text-8xl font-semibold text-txt-main">
               ${price}
             </span>
-            <span className="text-sm font-semibold text-txt-gray line-through">
-              ${lastPrice}
-            </span>
+            {lastPrice && (
+              <span className="text-sm font-semibold text-txt-gray line-through">
+                ${lastPrice}
+              </span>
+            )}
           </div>
           <p>{description ?? "3 remaining in stock."}</p>
         </div>
