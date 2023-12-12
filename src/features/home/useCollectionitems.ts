@@ -6,12 +6,11 @@ function useCollectionItems() {
     isLoading,
     data: recentShoes,
     error,
-    isFetching,
   } = useQuery({
     queryKey: ["collections"],
     queryFn: getShoesForHomePage,
   });
-  return { isLoading, recentShoes, error, isFetching };
+  return { isLoading, recentShoes, error };
 }
 
 export default useCollectionItems;

@@ -9,7 +9,7 @@ function Button({
 }: {
   children: ReactNode;
   type: string;
-  onClick: (e: MouseEvent) => void;
+  onClick: () => void;
   ariaLabel: string;
 }) {
   const base =

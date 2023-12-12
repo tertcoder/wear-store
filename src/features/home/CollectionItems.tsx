@@ -5,8 +5,8 @@ import MoveIcon from "../../assets/icons/Move.svg";
 import Loader from "../../ui/Loader";
 
 function CollectionItems() {
-  const { isLoading, isFetching, recentShoes } = useCollectionItems();
-  if (isLoading || isFetching) return <Loader />;
+  const { isLoading, recentShoes } = useCollectionItems();
+  if (isLoading) return <Loader />;
   return (
     <div className="flex gap-5 ">
       {recentShoes?.map((shoe) => (

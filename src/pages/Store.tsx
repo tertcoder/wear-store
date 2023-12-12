@@ -1,9 +1,13 @@
+import Header from "../ui/Header";
+
 function Store() {
   return (
-    <div>
-      Store
-    </div>
-  )
+    <>
+      <Header activePage="Store" />
+
+      <div>Store</div>
+    </>
+  );
 }
 
-export default Store
+export default Store;
