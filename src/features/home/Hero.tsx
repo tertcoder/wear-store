@@ -15,7 +15,7 @@ function Hero() {
             </p>
           </div>
 
-          <button className="flex items-center justify-center gap-2.5 self-start rounded-full border-2 border-bd-main bg-btn-light-bg px-6 py-[1.125rem] shadow-shdw-main">
+          <button className="flex items-center justify-center gap-2.5 self-start rounded-full border border-bd-main bg-btn-light-bg px-6 py-[1.125rem] shadow-shdw-main">
             <span className="text-lg font-semibold text-txt-main">
               Shop now
             </span>

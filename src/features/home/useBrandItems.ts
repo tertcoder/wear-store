@@ -11,7 +11,6 @@ function useBrandItems() {
     const otherIndex: number = availableBrands.findIndex(
       (obj) => (obj.brandName = "Other"),
     );
-    console.log(otherIndex);
     if (otherIndex !== -1) {
       const otherObject: { id: number; brandName: string; image: string } =
         availableBrands.splice(otherIndex, 1)[0];

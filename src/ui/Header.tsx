@@ -13,7 +13,6 @@ import CartIcon from "../assets/icons/Cart.svg";
 import WishlistIcon from "../assets/icons/Wishlist.svg";
 import HistoryIcon from "../assets/icons/History.svg";
 import LogoutIcon from "../assets/icons/Logout.svg";
-import { set } from "react-hook-form";
 
 function Header({ activePage }: { activePage: string }) {
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
@@ -24,7 +23,7 @@ function Header({ activePage }: { activePage: string }) {
     <nav className="flex w-full items-center justify-between">
       <button
         onClick={() => setNavMenuIsOpen(true)}
-        className="flex items-center gap-4 rounded-full border-2 border-bd-main bg-btn-gray-bg p-4 shadow-shdw-main"
+        className="flex items-center gap-4 rounded-full border border-bd-main bg-btn-gray-bg p-4 shadow-shdw-main"
       >
         <img src={MenuIcon} alt="Menu icon" />
         <span className="font-sans text-lg font-semibold text-txt-main">
@@ -67,7 +66,7 @@ function Header({ activePage }: { activePage: string }) {
       <img src={Logo} alt="WearStore Logo Icon" className="w-28" />
       <button
         onClick={() => setDetailIsOpen(true)}
-        className="flex items-center gap-4 rounded-full border-2 border-bd-main bg-btn-gray-bg pr-4 shadow-shdw-main"
+        className="flex items-center gap-4 rounded-full border border-bd-main bg-btn-gray-bg pr-4 shadow-shdw-main"
       >
         <img src={UserImg} alt="User Name" className="h-14 w-14 rounded-full" />
         <span className="font-sans text-lg font-semibold text-txt-main">

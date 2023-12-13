@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
+        coiny: ["Coiny"],
       },
       colors: {
         // Text Colors

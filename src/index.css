@@ -3,12 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
+  /* @font-face {
     font-family: "Montserrat";
-    /* src: font-url("Montserrat/Montserrat-VariableFont_wght.ttf")
-      format("truetype"); */
     src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
-  }
+  } */
 
   ::-webkit-scrollbar {
     @apply bg-bd-gray;
@@ -19,5 +17,17 @@
   }
   ::-webkit-scrollbar-thumb {
     @apply bg-bd-main;
+  }
+
+  .text-shadow-drop-inner {
+    /* Drop shadow of the text */
+    text-shadow: 0px 8px 10px rgba(40, 35, 28, 0.5);
+  }
+
+  .filter-item {
+    @apply flex items-center justify-center rounded-full border border-bd-main bg-btn-gray-bg px-5 py-2 text-base font-medium;
+  }
+  .filter-item.active {
+    @apply bg-btn-main-bg;
   }
 }

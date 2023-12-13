@@ -13,7 +13,7 @@ function Button({
   ariaLabel: string;
 }) {
   const base =
-    "btn flex items-center justify-center gap-2.5 rounded-[0.625rem] border-2 border-bd-main px-9 py-[0.94rem] font-semibold text-txt-main shadow-shdw-main";
+    "btn flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main px-9 py-[0.94rem] font-semibold text-txt-main shadow-shdw-main";
   const primary = `
   bg-btn-main-bg
   `;
