@@ -1,19 +1,16 @@
 import HeartIcon from "../assets/icons/Wishlist.svg";
 import CartIcon from "../assets/icons/Cart.svg";
 function Shoes({
-  key,
   image,
   name,
   price,
 }: {
-  key: string;
   image: string;
   name: string;
   price: number;
 }) {
   return (
     <div
-      key={key}
       style={{
         background: `
       url(${image}) center/cover no-repeat
@@ -28,15 +25,15 @@ function Shoes({
       <div className="flex items-center justify-between pt-2">
         {/* Two Component to refactor */}
 
-        <div className="flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg px-3 py-2 shadow-shdw-main">
+        <button className="flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg px-3 py-2 shadow-shdw-main">
           <span className="text-sm font-semibold text-txt-main">
             Add to Cart
           </span>
           <img src={CartIcon} alt="Add to Cart Icon" />
-        </div>
-        <div className="flex h-[2.0625rem] w-[2.0625rem] items-center justify-center rounded-rd-main border border-bd-main bg-btn-white-bg px-0.5 py-[0.1875rem] shadow-shdw-main">
+        </button>
+        <button className="flex h-[2.0625rem] w-[2.0625rem] items-center justify-center rounded-rd-main border border-bd-main bg-btn-white-bg px-0.5 py-[0.1875rem] shadow-shdw-main">
           <img src={HeartIcon} alt="Add to Wishlist Icon" />
-        </div>
+        </button>
       </div>
     </div>
   );

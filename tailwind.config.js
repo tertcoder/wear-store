@@ -38,6 +38,9 @@ export default {
       borderRadius: {
         "rd-main": "0.625rem",
       },
+      borderColor: {
+        lineColor: "rgba(55, 40, 28, 0.15)",
+      },
     },
   },
   plugins: [

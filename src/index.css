@@ -23,10 +23,11 @@
     /* Drop shadow of the text */
     text-shadow: 0px 8px 10px rgba(40, 35, 28, 0.5);
   }
-
+  .navAuth,
   .filter-item {
-    @apply flex items-center justify-center rounded-full border border-bd-main bg-btn-gray-bg px-5 py-2 text-base font-medium;
+    @apply flex items-center justify-center rounded-full border border-bd-main bg-btn-gray-bg px-5 py-2 text-base font-medium text-txt-main;
   }
+  .navAuth.active,
   .filter-item.active {
     @apply bg-btn-main-bg;
   }

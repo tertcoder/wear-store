@@ -1,13 +1,13 @@
 import useCollectionItems from "./useCollectionitems";
-import MoveIcon from "../../assets/icons/Move.svg";
 import Loader from "../../ui/Loader";
 import Shoes from "../../ui/Shoes";
+import MoveIcon from "../../assets/icons/Move.svg";
 
 function CollectionItems() {
   const { isLoading, recentShoes } = useCollectionItems();
   if (isLoading) return <Loader />;
   return (
-    <div className="flex gap-5 ">
+    <div className="flex gap-5">
       {recentShoes?.map((shoe) => (
         <Shoes
           key={shoe.id}
