@@ -7,7 +7,9 @@
     font-family: "Montserrat";
     src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
   } */
-
+  * {
+    @apply duration-150;
+  }
   ::-webkit-scrollbar {
     @apply bg-bd-gray;
     width: 10px;

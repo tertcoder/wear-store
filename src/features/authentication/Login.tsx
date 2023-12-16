@@ -1,4 +1,6 @@
-// import { Form } from "react-hook-form";
+import { Link } from "react-router-dom";
+import GoogleIcon from "../../assets/icons/Google.svg";
+import FacebookIcon from "../../assets/icons/Facebook.svg";
 
 function Login() {
   return (
@@ -9,7 +11,75 @@ function Login() {
         </h3>
         <p>Stay in Stride - Log In for the Latest Sneaker Releases</p>
       </div>
-      <div>Login Form</div>
+      <div className="flex w-[24rem] flex-col gap-6  py-[0.625rem]">
+        <form className="w-full space-y-[1.125rem] ">
+          <div className="flex w-full flex-col gap-[0.625rem]">
+            <label
+              className="text-base font-medium text-txt-main"
+              htmlFor="email_username"
+            >
+              Email or Username
+            </label>
+            <input
+              className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main"
+              pattern="^[\w\.-]+@[\w\.-]+\.\w+$|^[a-zA-Z][a-zA-Z0-9]*$"
+              required
+              type="email"
+              placeholder="Enter your email or username"
+              name="email_username"
+              id="email_username"
+            />
+          </div>
+          <div className="flex w-full flex-col gap-[0.625rem]">
+            <label
+              className="text-base font-medium text-txt-main"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
+              required
+              placeholder="Enter your password"
+              type="password"
+              name="password"
+              id="password"
+            />
+            <div className="text-end text-xs text-txt-gray">
+              Forgot password?{" "}
+              <span className="cursor-pointer underline">Reset</span>
+            </div>
+          </div>
+          <div className="flex w-full flex-col gap-[0.625rem]">
+            <button className="flex items-center justify-center rounded-[0.625rem] border border-bd-main bg-btn-main-bg p-2.5 shadow-shdw-main">
+              <span className="text-base font-semibold text-txt-main">
+                Sign In
+              </span>
+            </button>
+            <div className="text-center text-xs text-txt-gray">
+              I don’t have an account?{" "}
+              <Link to="/signup" className="cursor-pointer underline">Sign up</Link>
+            </div>
+          </div>
+        </form>
+        <div className="relative flex w-full flex-col gap-[1.125rem] border-t border-bd-gray pt-6">
+          <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-bd-gray bg-main-bg px-2.5 text-sm font-normal text-txt-gray">
+            or
+          </span>
+          <button className="flex items-center justify-center  gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg p-2.5 shadow-shdw-main">
+            <span className="text-base font-semibold text-txt-main">
+              Log in with Google
+            </span>
+            <img src={GoogleIcon} alt="Google Logo" />
+          </button>
+          <button className="flex items-center justify-center  gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg p-2.5 shadow-shdw-main">
+            <span className="text-base font-semibold text-txt-main">
+              Log in with Facebook
+            </span>
+            <img src={FacebookIcon} alt="Facebook Logo" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -43,11 +43,19 @@ function LatestProduct() {
           <p>{description ?? "3 remaining in stock."}</p>
         </div>
         <div className="flex gap-10 py-3">
-          <Button type="primary">
+          <Button
+            type="primary"
+            ariaLabel="Add to cart"
+            onClick={() => console.log("Adding to cart...")}
+          >
             <span>Add to Cart</span>
             <img src={CartIcon} alt="Cart Icon" />
           </Button>
-          <Button type="secondary">
+          <Button
+            type="secondary"
+            ariaLabel="Save to wishlist"
+            onClick={() => console.log("Saving to wishlist...")}
+          >
             <span>Save to Wishlist</span>
             <img src={WishlistIcon} alt="Wishlist Icon" />
           </Button>

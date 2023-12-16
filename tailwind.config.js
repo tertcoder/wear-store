@@ -22,6 +22,9 @@ export default {
         "bd-main": "#28231c",
         "bd-gray": "#d4d2cf",
 
+        // input
+        "input-main": "#474747",
+
         // Background
         "main-bg": "#fffaf6",
       },
