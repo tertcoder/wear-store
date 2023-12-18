@@ -19,13 +19,19 @@ function NewShoe() {
         <div className="grid grid-cols-2 gap-6 px-16 py-8">
           <label htmlFor="imageUpload">
             <div className="flex h-full items-center justify-center rounded-[1.25rem] border border-bd-main bg-main-bg">
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
                 <img src={Upload} alt="Upload" />
                 <span className="text-xl font-normal text-txt-main">
                   Upload image
                 </span>
               </div>
             </div>
+            <input
+              type="file"
+              name="imageUpload"
+              id="imageUpload"
+              className="hidden"
+            />
           </label>
           <div className="rounded-[1.25rem] bg-white px-16 py-9 shadow-shdw-main">
             <form className="w-full space-y-[1.125rem] ">

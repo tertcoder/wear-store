@@ -3,7 +3,6 @@ import AllShoes from "../features/store/AllShoes";
 import Filtering from "../features/store/Filtering";
 import Heading from "../features/store/Heading";
 import Header from "../ui/Header";
-import NewShoe from "../features/NewShoe";
 
 function Store() {
   return (
@@ -13,7 +12,6 @@ function Store() {
       <Filtering />
       <AllShoes />
       <Footer />
-      <NewShoe />
     </>
   );
 }

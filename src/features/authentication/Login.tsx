@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/icons/Google.svg";
 import FacebookIcon from "../../assets/icons/Facebook.svg";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type LoginDataType = {
+  email: string;
+  password: string;
+};
 
 function Login() {
+  const { register, handleSubmit } = useForm<LoginDataType>();
+  const onSubmit: SubmitHandler<LoginDataType> = (data) => console.log(data);
+
   return (
     <div className="flex flex-col items-center gap-6 py-6">
       <div className="w-full max-w-md space-y-4 text-center font-medium text-txt-main">
@@ -12,22 +21,24 @@ function Login() {
         <p>Stay in Stride - Log In for the Latest Sneaker Releases</p>
       </div>
       <div className="flex w-[24rem] flex-col gap-6  py-[0.625rem]">
-        <form className="w-full space-y-[1.125rem] ">
+        <form
+          className="w-full space-y-[1.125rem]"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex w-full flex-col gap-[0.625rem]">
             <label
               className="text-base font-medium text-txt-main"
-              htmlFor="email_username"
+              htmlFor="email"
             >
-              Email or Username
+              Email address
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main"
-              pattern="^[\w\.-]+@[\w\.-]+\.\w+$|^[a-zA-Z][a-zA-Z0-9]*$"
               required
               type="email"
-              placeholder="Enter your email or username"
-              name="email_username"
-              id="email_username"
+              placeholder="Enter your email address"
+              {...register("email", { required: true })}
+              id="email"
             />
           </div>
           <div className="flex w-full flex-col gap-[0.625rem]">
@@ -42,7 +53,7 @@ function Login() {
               required
               placeholder="Enter your password"
               type="password"
-              name="password"
+              {...register("password", { required: true })}
               id="password"
             />
             <div className="text-end text-xs text-txt-gray">
@@ -58,7 +69,9 @@ function Login() {
             </button>
             <div className="text-center text-xs text-txt-gray">
               I don’t have an account?{" "}
-              <Link to="/signup" className="cursor-pointer underline">Sign up</Link>
+              <Link to="/signup" className="cursor-pointer underline">
+                Sign up
+              </Link>
             </div>
           </div>
         </form>
