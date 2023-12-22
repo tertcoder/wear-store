@@ -33,4 +33,17 @@
   .filter-item.active {
     @apply bg-btn-main-bg;
   }
+  @media screen and (max-width: 1172px) {
+    .hero-on {
+      background: linear-gradient(
+          0deg,
+          rgba(68, 29, 0, 0.483) 0%,
+          rgba(68, 29, 0, 0.483) 100%
+        ),
+        url(./assets/images/hero.webp);
+      background-size: cover;
+      background-position: 80%;
+      color: white;
+    }
+  }
 }
