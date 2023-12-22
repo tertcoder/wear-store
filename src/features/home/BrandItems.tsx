@@ -17,7 +17,7 @@ function BrandItems() {
                   rgba(40, 35, 28, 0.20) 0%, rgba(40, 35, 28, 0.20) 100%),
                     url(${item.image}) center/cover no-repeat`,
           }}
-          className="flex w-56 flex-shrink-0 items-center justify-center gap-2.5 rounded-full border border-bd-gray px-[3.25rem] py-[1.125rem]"
+          className=" flex w-56 flex-shrink-0 cursor-pointer items-center justify-center gap-2.5 rounded-full border border-bd-gray px-[3.25rem] py-[1.125rem]"
         >
           <span className="text-2xl font-bold text-white">{item.brand}</span>
         </div>

@@ -29,7 +29,12 @@ function Hero() {
           </button>
         </div>
       </div>
-      <img src={HeroImg} alt="Hero Image" className="self-end object-cover" />
+      <img
+        loading="lazy"
+        src={HeroImg}
+        alt="Hero Image"
+        className="self-end object-cover"
+      />
     </div>
   );
 }

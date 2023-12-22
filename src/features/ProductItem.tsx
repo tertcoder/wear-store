@@ -17,6 +17,7 @@ function ProductItem() {
           />
 
           <img
+            loading="lazy"
             src={Jordan}
             alt="Jordan"
             className="h-full rounded-tl-[2.5rem] object-cover"

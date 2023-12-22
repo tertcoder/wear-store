@@ -20,7 +20,7 @@ function LatestProduct() {
       }}
       className="grid h-[32.2rem] max-w-7xl grid-cols-2 grid-rows-[32.2rem] overflow-hidden rounded-[2.5rem] border border-bd-gray"
     >
-      <img src={image} alt={`${name}, ${brand}`} />
+      <img loading="lazy" src={image} alt={`${name}, ${brand}`} />
       {/* */}
       <div className="relative flex flex-col justify-center gap-8 overflow-hidden px-[4rem] py-[2rem]">
         <div>
