@@ -10,7 +10,7 @@ function Heading() {
     >
       <h1
         data-text="Find Your Perfect Pair"
-        className="font-coiny text-shadow-drop-inner inline-block text-center text-[4rem] text-btn-main-bg  "
+        className="text-shadow-drop-inner inline-block text-center font-coiny text-5xl text-btn-main-bg lg:text-[4rem]  "
       >
         Find Your Perfect Pair
       </h1>
