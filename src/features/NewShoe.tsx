@@ -1,17 +1,30 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Line from "../assets/icons/smll.svg";
 import Upload from "../assets/icons/Upload.svg";
-import { newShoeIsOpen } from "../store/store";
+import { newShoeIsOpen, setNewShoeIsOpen } from "../store/store";
 import { twMerge } from "tailwind-merge";
+import { useEffect, useRef } from "react";
 
 function NewShoe() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const isOpen = useSelector(newShoeIsOpen);
-  console.log(isOpen);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    containerRef.current?.addEventListener("click", (e: Event) => {
+      //@ts-expect-error | the error is "Property 'classList' does not exist on type 'EventTarget'" whereas classList exist in Javascript but it won't work in production using typescript that why i'm ignoring the error to make it work
+      if (!e?.target?.classList.contains("overlay")) return;
+      console.log("clicked");
+      dispatch(setNewShoeIsOpen(false));
+    });
+  }, [dispatch]);
+
   return (
     <div
+      ref={containerRef}
       className={twMerge(
-        `fixed inset-0 z-10 flex  items-end justify-center  bg-neutral-400/10 backdrop-blur-[2px]`,
-        `${isOpen ? "translate-y-0" : "hidden translate-y-full opacity-0"}`,
+        `overlay fixed inset-0 z-10 flex items-end justify-center bg-neutral-400/10 backdrop-blur-[2px] duration-150`,
+        `${isOpen ? "opacity-1 translate-y-0" : "translate-y-full opacity-0"}`,
       )}
     >
       <div className="relative w-full max-w-7xl  overflow-y-auto rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">

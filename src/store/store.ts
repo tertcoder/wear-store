@@ -12,10 +12,10 @@ const overLayPagesSlice = createSlice({
       state.cartIsOpen = action.payload;
     },
     setNewShoeIsOpen: (state, action: PayloadAction<boolean>) => {
-      state.cartIsOpen = action.payload;
+      state.newShoeIsOpen = action.payload;
     },
     setProductItemIsOpen: (state, action: PayloadAction<boolean>) => {
-      state.cartIsOpen = action.payload;
+      state.productItemIsOpen = action.payload;
     },
   },
 });

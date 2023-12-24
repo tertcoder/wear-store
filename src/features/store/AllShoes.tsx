@@ -26,8 +26,6 @@ function AllShoes() {
       <button
         onClick={() => {
           dispatch(setNewShoeIsOpen(true));
-          console.log("clicked");
-          console.log(store.getState());
         }}
         className="flex h-80 w-60 items-center  justify-center rounded-[1.25rem] border border-bd-gray bg-btn-gray-bg max-md:h-[35rem] max-md:w-[25rem]"
       >
