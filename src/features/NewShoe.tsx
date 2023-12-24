@@ -3,8 +3,8 @@ import Upload from "../assets/icons/Upload.svg";
 
 function NewShoe() {
   return (
-    <div className="fixed inset-0 z-10 flex translate-y-0 items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]">
-      <div className="relative w-full max-w-7xl rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">
+    <div className="fixed inset-0 z-10 flex translate-y-0 items-end justify-center  bg-neutral-400/10 backdrop-blur-[2px]">
+      <div className="relative w-full max-w-7xl  overflow-y-auto rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">
         <img
           src={Line}
           alt="line"
@@ -16,9 +16,9 @@ function NewShoe() {
             Add a sneaker
           </h1>
         </div>
-        <div className="grid grid-cols-2 gap-6 px-16 py-8">
+        <div className="grid grid-cols-1 gap-6 px-16 py-8 lg:grid-cols-2">
           <label htmlFor="imageUpload">
-            <div className="flex h-full items-center justify-center rounded-[1.25rem] border border-bd-main bg-main-bg">
+            <div className="flex h-28 items-center justify-center rounded-[1.25rem] border border-bd-main bg-main-bg lg:h-full">
               <div className="flex flex-col items-center justify-center">
                 <img src={Upload} alt="Upload" />
                 <span className="text-xl font-normal text-txt-main">

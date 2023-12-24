@@ -8,8 +8,8 @@ import Button from "../ui/Button";
 function ProductItem() {
   return (
     <div className="fixed inset-0 z-10 flex translate-y-0 items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]">
-      <div className="w-full max-w-7xl rounded-t-[2.5rem] border border-bd-main shadow-shdw-main">
-        <div className="relative grid grid-cols-2 rounded-t-[2.5rem] bg-main-bg">
+      <div className="w-full max-w-7xl overflow-y-auto rounded-t-[2.5rem] border border-bd-main shadow-shdw-main max-lg:h-[70vh]">
+        <div className="relative grid grid-cols-1 rounded-t-[2.5rem] bg-main-bg lg:grid-cols-2">
           <img
             src={Line}
             alt="line"
@@ -45,7 +45,7 @@ function ProductItem() {
                 </div>
                 <p>3 remaining in stock.</p>
               </div>
-              <div className="flex gap-10 pt-3">
+              <div className="flex w-full flex-wrap gap-x-10 gap-y-5 pt-3">
                 <Button
                   type="primary"
                   ariaLabel="Add to cart"

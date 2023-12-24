@@ -2,6 +2,9 @@ import Loader from "../../ui/Loader";
 import Shoes from "../../ui/Shoes";
 import useAllShoes from "./useAllShoes";
 import AddIcon from "../../assets/icons/Add.svg";
+import Cart from "../Cart";
+import NewShoe from "../NewShoe";
+import ProductItem from "../ProductItem";
 
 function AllShoes() {
   const { allShoes, isLoading } = useAllShoes();
@@ -23,6 +26,9 @@ function AllShoes() {
           <img src={AddIcon} alt="Add Icon" />
         </div>
       </button>
+      {/* <Cart /> */}
+      {/* <NewShoe /> */}
+      <ProductItem />
     </div>
   );
 }
