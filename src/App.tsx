@@ -7,6 +7,8 @@ import Store from "./pages/Store";
 import AuthLayout from "./ui/AuthLayout";
 import Login from "./features/authentication/Login";
 import Signup from "./features/authentication/Signup";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -39,10 +41,12 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient();
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen />
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen />
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </Provider>
   );
 }
 

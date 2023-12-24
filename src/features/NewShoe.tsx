@@ -1,9 +1,19 @@
+import { useSelector } from "react-redux";
 import Line from "../assets/icons/smll.svg";
 import Upload from "../assets/icons/Upload.svg";
+import { newShoeIsOpen } from "../store/store";
+import { twMerge } from "tailwind-merge";
 
 function NewShoe() {
+  const isOpen = useSelector(newShoeIsOpen);
+  console.log(isOpen);
   return (
-    <div className="fixed inset-0 z-10 flex translate-y-0 items-end justify-center  bg-neutral-400/10 backdrop-blur-[2px]">
+    <div
+      className={twMerge(
+        `fixed inset-0 z-10 flex  items-end justify-center  bg-neutral-400/10 backdrop-blur-[2px]`,
+        `${isOpen ? "translate-y-0" : "hidden translate-y-full opacity-0"}`,
+      )}
+    >
       <div className="relative w-full max-w-7xl  overflow-y-auto rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">
         <img
           src={Line}
