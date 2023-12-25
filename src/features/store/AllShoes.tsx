@@ -2,11 +2,9 @@ import Loader from "../../ui/Loader";
 import Shoes from "../../ui/Shoes";
 import useAllShoes from "./useAllShoes";
 import AddIcon from "../../assets/icons/Add.svg";
-import Cart from "../Cart";
 import NewShoe from "../NewShoe";
-import ProductItem from "../ProductItem";
 import { useDispatch } from "react-redux";
-import { setNewShoeIsOpen, store } from "../../store/store";
+import { setNewShoeIsOpen } from "../../store/store";
 
 function AllShoes() {
   const { allShoes, isLoading } = useAllShoes();

@@ -4,6 +4,7 @@ import Collections from "../features/home/Collections";
 import LatestProduct from "../features/home/LatestProduct";
 import Header from "../ui/Header";
 import Footer from "../ui/Footer";
+import Cart from "../features/Cart";
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <Collections />
       <LatestProduct />
       <Footer />
+      <Cart />
     </>
   );
 }

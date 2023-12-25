@@ -14,7 +14,7 @@ function NewShoe() {
     containerRef.current?.addEventListener("click", (e: Event) => {
       //@ts-expect-error | the error is "Property 'classList' does not exist on type 'EventTarget'" whereas classList exist in Javascript but it won't work in production using typescript that why i'm ignoring the error to make it work
       if (!e?.target?.classList.contains("overlay")) return;
-      console.log("clicked");
+
       dispatch(setNewShoeIsOpen(false));
     });
   }, [dispatch]);

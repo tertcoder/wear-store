@@ -1,8 +1,31 @@
+import { useEffect, useRef } from "react";
 import Line from "../assets/icons/smll.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { cartIsOpen, setCartIsOpen } from "../store/store";
+import { twMerge } from "tailwind-merge";
 
 function Cart() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isOpen = useSelector(cartIsOpen);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    containerRef.current?.addEventListener("click", (e: Event) => {
+      //@ts-expect-error | the error is "Property 'classList' does not exist on type 'EventTarget'" whereas classList exist in Javascript but it won't work in production using typescript that why i'm ignoring the error to make it work
+      if (!e?.target?.classList.contains("overlay")) return;
+
+      dispatch(setCartIsOpen(false));
+    });
+  }, [dispatch]);
+
   return (
-    <div className="fixed inset-0 z-10 flex translate-y-0 items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]">
+    <div
+      ref={containerRef}
+      className={twMerge(
+        `overlay fixed inset-0 z-10 flex items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]`,
+        `${isOpen ? "opacity-1 translate-y-0" : "translate-y-full opacity-0"}`,
+      )}
+    >
       <div className="relative flex h-full max-h-[36rem] w-full max-w-7xl flex-col rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">
         <img
           src={Line}
