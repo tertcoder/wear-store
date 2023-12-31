@@ -1,26 +1,49 @@
 import HeartIcon from "../assets/icons/Wishlist.svg";
 import CartIcon from "../assets/icons/Cart.svg";
 import { twMerge } from "tailwind-merge";
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setProductItemIsOpen } from "../store/store";
 function Shoes({
+  id,
   image,
   name,
   price,
   className,
 }: {
+  id: string;
   image: string;
   name: string;
   price: number;
   className?: string;
 }) {
+  const shoeRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    function handleClick() {
+      navigate(`?idShoe=${id}`);
+      dispatch(setProductItemIsOpen(true));
+    }
+    const shoeElement = shoeRef.current;
+    shoeElement?.addEventListener("click", handleClick);
+
+    return () => {
+      shoeElement?.removeEventListener("click", handleClick);
+    };
+  }, [navigate, dispatch, id]);
   return (
     <div
+      id={id}
       style={{
         background: `
       url(${image}) center/cover no-repeat
     `,
       }}
+      ref={shoeRef}
       className={twMerge(
-        `flex h-80 w-60 flex-col justify-between rounded-[1.25rem] border border-bd-gray px-4 py-5`,
+        `item flex h-80 w-60 cursor-pointer flex-col justify-between rounded-[1.25rem] border border-bd-gray px-4 py-5`,
         `${className}`,
       )}
     >

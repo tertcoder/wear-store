@@ -96,6 +96,7 @@ function Header({ activePage }: { activePage: string }) {
           <Button
             ariaLabel="My Cart"
             onClick={() => {
+              navigate("?myCartIsOpen=true");
               dispatch(setCartIsOpen(true));
               setDetailIsOpen(false);
             }}

@@ -3,28 +3,45 @@ import Line from "../assets/icons/smll.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { cartIsOpen, setCartIsOpen } from "../store/store";
 import { twMerge } from "tailwind-merge";
+import { useSearchParams } from "react-router-dom";
 
 function Cart() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isOpen = useSelector(cartIsOpen);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    containerRef.current?.addEventListener("click", (e: Event) => {
+    if (searchParams.get("myCartIsOpen") === "true")
+      dispatch(setCartIsOpen(true));
+  });
+
+  useEffect(() => {
+    function handleClick(e: Event) {
       //@ts-expect-error | the error is "Property 'classList' does not exist on type 'EventTarget'" whereas classList exist in Javascript but it won't work in production using typescript that why i'm ignoring the error to make it work
       if (!e?.target?.classList.contains("overlay")) return;
-
+      setSearchParams({});
       dispatch(setCartIsOpen(false));
-    });
-  }, [dispatch]);
+    }
+    const containerElement = containerRef.current;
+    containerElement?.addEventListener("click", handleClick);
+
+    return () => {
+      containerElement?.removeEventListener("click", handleClick);
+    };
+  }, [dispatch, setSearchParams]);
 
   return (
     <div
       ref={containerRef}
       className={twMerge(
-        `overlay fixed inset-0 z-10 flex items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]`,
-        `${isOpen ? "opacity-1 translate-y-0" : "translate-y-full opacity-0"}`,
+        `overlay fixed inset-0 z-10 flex origin-bottom items-end justify-center bg-neutral-400/10 backdrop-blur-[2px] duration-150`,
+        `${isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}`,
       )}
+      // className={twMerge(
+      //   `overlay fixed inset-0 z-10 flex items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]`,
+      //   `${isOpen ? "opacity-1 translate-y-0" : "translate-y-full opacity-0"}`,
+      // )}
     >
       <div className="relative flex h-full max-h-[36rem] w-full max-w-7xl flex-col rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">
         <img

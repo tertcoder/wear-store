@@ -7,6 +7,7 @@ import PrevIcon from "../../assets/icons/Left.svg";
 import NextIcon from "../../assets/icons/Right.svg";
 import useScrollXSmooth from "../../hooks/useScrollXSmooth";
 import CollectionItems from "./CollectionItems";
+import ProductItem from "../ProductItem";
 
 function Collections() {
   const { scrollRef, prevMove, nextMove } = useScrollXSmooth();
@@ -43,6 +44,7 @@ function Collections() {
           <BtnNav icon={NextIcon} actionType="Next" onClick={nextMove} />
         </div>
       </div>
+      <ProductItem />
     </ScrollContainer>
   );
 }

@@ -25,6 +25,21 @@ export async function getShoesForHomePage(): Promise<shoesInterface[]> {
   }
   return data;
 }
+export async function getShoe(id: string): Promise<shoesInterface[]> {
+  if (!id) return [];
+  const { data, error } = await supabase
+    .from("shoes")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Product cannot be loaded!");
+  }
+
+  return data;
+}
 export async function getLatestShoe(): Promise<shoesInterface[]> {
   const { data, error } = await supabase
     .from("shoes")

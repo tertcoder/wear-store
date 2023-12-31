@@ -10,6 +10,7 @@ function CollectionItems() {
     <div className="flex gap-5">
       {recentShoes?.map((shoe) => (
         <Shoes
+          id={shoe.id}
           key={shoe.id}
           image={shoe.image}
           name={shoe.name}

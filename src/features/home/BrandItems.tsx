@@ -1,11 +1,10 @@
-import Loader from "../../ui/Loader";
+// import Loader from "../../ui/Loader";
 import { brands } from "../../utils/data";
-import useBrandItems from "./useBrandItems";
+// import useBrandItems from "./useBrandItems";
 
 function BrandItems() {
-  const { isLoading, availableBrands } = useBrandItems();
-  if (isLoading) <Loader />;
-  console.log(availableBrands);
+  // const { isLoading, availableBrands } = useBrandItems();
+  // if (isLoading) <Loader />;
   return (
     <div className="flex items-center gap-5 ">
       {brands.map((item) => (
