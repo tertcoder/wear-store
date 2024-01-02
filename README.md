@@ -8,7 +8,7 @@ WearStore is an e-commerce platform for purchasing a variety of shoes. This proj
 - **Product Details:** Individual pages for each product with comprehensive details.
 - **User Authentication:** Secure authentication using Supabase for user accounts.
 - **Responsive Design:** Utilizing TailwindCSS for a visually appealing and responsive UI.
-
+- **Figma Design:** [Here is the design, I used figma](https://www.figma.com/file/heT7dQZ3bg27PW5qg5UIe8/WearShoes?type=design&node-id=0%3A1&mode=design&t=NuJkGqkvWo0SJrls-1)
 ## Getting Started
 
 1. **Clone the repository:**
