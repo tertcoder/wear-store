@@ -25,8 +25,7 @@ export async function getShoesForHomePage(): Promise<shoesInterface[]> {
   }
   return data;
 }
-export async function getShoe(id: string): Promise<shoesInterface[]> {
-  if (!id) return [];
+export async function getShoe(id: string): Promise<shoesInterface> {
   const { data, error } = await supabase
     .from("shoes")
     .select("*")

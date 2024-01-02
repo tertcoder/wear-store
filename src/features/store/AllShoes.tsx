@@ -6,7 +6,6 @@ import NewShoe from "../NewShoe";
 import { useDispatch } from "react-redux";
 import { setNewShoeIsOpen } from "../../store/store";
 import { useNavigate } from "react-router-dom";
-import ProductItem from "../ProductItem";
 
 function AllShoes() {
   const { allShoes, isLoading } = useAllShoes();
@@ -39,7 +38,6 @@ function AllShoes() {
       </button>
       {/* <Cart /> */}
       <NewShoe />
-      <ProductItem />
     </div>
   );
 }

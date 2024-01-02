@@ -4,7 +4,6 @@ import { twMerge } from "tailwind-merge";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setProductItemIsOpen } from "../store/store";
 function Shoes({
   id,
   image,
@@ -23,8 +22,7 @@ function Shoes({
   const dispatch = useDispatch();
   useEffect(() => {
     function handleClick() {
-      navigate(`?idShoe=${id}`);
-      dispatch(setProductItemIsOpen(true));
+      navigate(`/store/${id}`);
     }
     const shoeElement = shoeRef.current;
     shoeElement?.addEventListener("click", handleClick);

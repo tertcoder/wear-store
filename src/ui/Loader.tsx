@@ -6,7 +6,7 @@ function Loader({
   loaderText?: string;
 }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white">
+    <div className="fixed inset-0 z-20 flex items-center justify-center bg-white">
       <div className="flex flex-col items-center justify-center gap-6">
         <img
           src={LogoSVG}

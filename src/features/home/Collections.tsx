@@ -7,16 +7,19 @@ import PrevIcon from "../../assets/icons/Left.svg";
 import NextIcon from "../../assets/icons/Right.svg";
 import useScrollXSmooth from "../../hooks/useScrollXSmooth";
 import CollectionItems from "./CollectionItems";
-import ProductItem from "../ProductItem";
 
-function Collections() {
+function Collections({
+  collectionTitle = "Our Collection",
+}: {
+  collectionTitle: string;
+}) {
   const { scrollRef, prevMove, nextMove } = useScrollXSmooth();
   return (
     <ScrollContainer>
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col items-start justify-center gap-1 p-2.5">
           <span className="text-2xl font-medium text-txt-main">
-            Our Collections
+            {collectionTitle}
           </span>
           <img src={LineIcon} alt="Line svg" />
         </div>
@@ -44,7 +47,6 @@ function Collections() {
           <BtnNav icon={NextIcon} actionType="Next" onClick={nextMove} />
         </div>
       </div>
-      <ProductItem />
     </ScrollContainer>
   );
 }

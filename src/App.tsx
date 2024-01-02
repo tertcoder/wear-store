@@ -9,6 +9,7 @@ import Login from "./features/authentication/Login";
 import Signup from "./features/authentication/Signup";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import ShoesDetails from "./features/ShoesDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/store",
         element: <Store />,
+      },
+      {
+        path: "/store/:shoeId",
+        element: <ShoesDetails />,
       },
     ],
   },
