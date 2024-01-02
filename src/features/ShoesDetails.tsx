@@ -12,16 +12,17 @@ function ShoesDetails() {
   const shoesDetail = shoe ? shoe : null;
   const contentFallBack = (
     <div className="flex min-h-[34rem] w-full items-center justify-center rounded-[2.5rem] bg-main-bg text-2xl font-medium text-txt-main">
-      This Sneaker is not available!!!
+      <Loading />
     </div>
   );
-  if (isLoading) <Loading />;
 
   return (
     <>
       <Header activePage="Store" />
       <div className=" w-full max-w-7xl rounded-[2.5rem] border border-[#DFDAD5] shadow-shdw-main">
-        {shoesDetail ? (
+        {!shoesDetail || isLoading ? (
+          contentFallBack
+        ) : (
           <div className="grid min-h-[34rem] grid-cols-2 rounded-[2.5rem] bg-main-bg">
             <img
               src={shoesDetail.image}
@@ -75,8 +76,6 @@ function ShoesDetails() {
               </div>
             </div>
           </div>
-        ) : (
-          contentFallBack
         )}
       </div>
       <Collections collectionTitle="Sneakers you may like" />
