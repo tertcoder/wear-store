@@ -1,9 +1,7 @@
+import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 import HeartIcon from "../assets/icons/Wishlist.svg";
 import CartIcon from "../assets/icons/Cart.svg";
-import { twMerge } from "tailwind-merge";
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 function Shoes({
   id,
   image,
@@ -17,20 +15,6 @@ function Shoes({
   price: number;
   className?: string;
 }) {
-  const shoeRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    function handleClick() {
-      navigate(`/store/${id}`);
-    }
-    const shoeElement = shoeRef.current;
-    shoeElement?.addEventListener("click", handleClick);
-
-    return () => {
-      shoeElement?.removeEventListener("click", handleClick);
-    };
-  }, [navigate, dispatch, id]);
   return (
     <div
       id={id}
@@ -39,16 +23,18 @@ function Shoes({
       url(${image}) center/cover no-repeat
     `,
       }}
-      ref={shoeRef}
       className={twMerge(
-        `item flex h-80 w-60 cursor-pointer flex-col justify-between rounded-[1.25rem] border border-bd-gray px-4 py-5`,
+        `item flex h-80 w-60 flex-col justify-between rounded-[1.25rem] border border-bd-gray px-4 py-5`,
         `${className}`,
       )}
     >
-      <div className="flex flex-col gap-[0.3125rem] rounded-rd-main bg-[#fff9f5] p-2.5  shadow-shdw-main backdrop-blur-[2px]">
+      <Link
+        to={`/store/${id}`}
+        className="flex flex-col gap-[0.3125rem] rounded-rd-main bg-[#fff9f5] p-2.5  shadow-shdw-main backdrop-blur-[2px]"
+      >
         <h3 className="text-base font-bold text-txt-main">{name}</h3>
         <p className="text-xs font-medium text-txt-gray">{price}</p>
-      </div>
+      </Link>
       <div className="flex items-center justify-between pt-2">
         {/* Two Component to refactor */}
 
