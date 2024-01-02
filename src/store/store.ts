@@ -5,7 +5,6 @@ const overLayPagesSlice = createSlice({
   initialState: {
     cartIsOpen: false,
     newShoeIsOpen: false,
-    productItemIsOpen: false,
   },
   reducers: {
     setCartIsOpen: (state, action: PayloadAction<boolean>) => {
@@ -14,14 +13,10 @@ const overLayPagesSlice = createSlice({
     setNewShoeIsOpen: (state, action: PayloadAction<boolean>) => {
       state.newShoeIsOpen = action.payload;
     },
-    setProductItemIsOpen: (state, action: PayloadAction<boolean>) => {
-      state.productItemIsOpen = action.payload;
-    },
   },
 });
 
-export const { setCartIsOpen, setNewShoeIsOpen, setProductItemIsOpen } =
-  overLayPagesSlice.actions;
+export const { setCartIsOpen, setNewShoeIsOpen } = overLayPagesSlice.actions;
 
 export const store = configureStore({
   reducer: {
@@ -35,6 +30,3 @@ export const cartIsOpen = (state: RootState) => state.overLayPages.cartIsOpen;
 
 export const newShoeIsOpen = (state: RootState) =>
   state.overLayPages.newShoeIsOpen;
-
-export const productItemIsOpen = (state: RootState) =>
-  state.overLayPages.productItemIsOpen;

@@ -2,6 +2,7 @@ import useCollectionItems from "./useCollectionitems";
 import Loader from "../../ui/Loader";
 import Shoes from "../../ui/Shoes";
 import MoveIcon from "../../assets/icons/Move.svg";
+import { Link } from "react-router-dom";
 
 function CollectionItems() {
   const { isLoading, recentShoes } = useCollectionItems();
@@ -17,12 +18,15 @@ function CollectionItems() {
           price={shoe.price}
         />
       ))}
-      <button className="mr-10 flex items-center gap-1 self-center rounded-rd-main bg-btn-gray-bg px-2.5 py-5">
+      <Link
+        to="/store"
+        className="mr-10 flex items-center gap-1 self-center rounded-rd-main bg-btn-gray-bg px-2.5 py-5"
+      >
         <span className="text-sm font-medium" style={{ color: "#65625e" }}>
           More
         </span>
         <img src={MoveIcon} alt="Go to store" />
-      </button>
+      </Link>
     </div>
   );
 }
