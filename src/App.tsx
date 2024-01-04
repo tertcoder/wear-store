@@ -10,6 +10,7 @@ import Signup from "./features/authentication/Signup";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ShoesDetails from "./features/ShoesDetails";
+import ErrorFallback from "./ui/ErrorFallback";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/store/:shoeId",
         element: <ShoesDetails />,
+      },
+      {
+        path: "*",
+        element: <ErrorFallback />,
       },
     ],
   },
