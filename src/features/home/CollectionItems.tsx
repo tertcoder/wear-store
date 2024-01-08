@@ -12,7 +12,7 @@ function CollectionItems() {
     <>
       {correctedRecentShoes.length < 1 && (
         <div>
-          <span className="text-2xl font-medium text-txt-main">
+          <span className="text-xl font-medium text-txt-gray">
             No data available!
           </span>
         </div>

@@ -15,12 +15,6 @@ function ShoesDetails() {
   const contentFallBack = (
     <div className="flex min-h-[34rem] w-full items-center justify-center rounded-[2.5rem] bg-main-bg text-2xl font-medium text-txt-main">
       {(isLoading || isFetching) && <Loading />}
-
-      {!shoesDetail && (
-        <span className="text-xl font-medium text-txt-gray">
-          No data available!
-        </span>
-      )}
     </div>
   );
 
@@ -32,61 +26,72 @@ function ShoesDetails() {
           Back
         </button>
 
-        {!shoesDetail || isLoading || isFetching ? (
+        {isLoading || isFetching ? (
           contentFallBack
         ) : (
           <div className="grid min-h-[34rem] grid-cols-2 rounded-[2.5rem] bg-main-bg">
-            <img
-              src={shoesDetail.image}
-              alt="Jordan"
-              loading="lazy"
-              className="h-full w-full rounded-l-[2.5rem] object-cover"
-            />
-
-            <div className="flex h-full items-center px-16 py-[4.5rem]">
-              <div className="flex flex-col gap-8">
-                <div>
-                  <h2 className="text-[2.5rem] font-semibold text-txt-main">
-                    {shoesDetail.name}
-                  </h2>
-                  <span className="itemce flex gap-1">
-                    4.5 <img src={StarIcon} alt="Star Icon" />
-                  </span>
-                </div>
-                <div className="space-y-3">
-                  <div className="space-x-6">
-                    <span className="text-8xl font-semibold text-txt-main">
-                      {shoesDetail.price}
+            {!shoesDetail ? (
+              <span className="text-xl font-medium text-txt-gray">
+                No data available!
+              </span>
+            ) : (
+              <img
+                src={shoesDetail.image}
+                alt="Jordan"
+                loading="lazy"
+                className="h-full w-full rounded-l-[2.5rem] object-cover"
+              />
+            )}
+            {!shoesDetail ? (
+              <span className="text-xl font-medium text-txt-gray">
+                No data available!
+              </span>
+            ) : (
+              <div className="flex h-full items-center px-16 py-[4.5rem]">
+                <div className="flex flex-col gap-8">
+                  <div>
+                    <h2 className="text-[2.5rem] font-semibold text-txt-main">
+                      {shoesDetail.name}
+                    </h2>
+                    <span className="itemce flex gap-1">
+                      4.5 <img src={StarIcon} alt="Star Icon" />
                     </span>
-
-                    {shoesDetail.lastPrice && (
-                      <span className="text-sm font-semibold text-txt-gray line-through">
-                        {shoesDetail.lastPrice}
-                      </span>
-                    )}
                   </div>
-                  <p>3 remaining in stock.</p>
-                </div>
-                <div className="flex gap-10 pt-3">
-                  <Button
-                    type="primary"
-                    ariaLabel="Add to cart"
-                    onClick={() => console.log("Adding to cart...")}
-                  >
-                    <span>Add to Cart</span>
-                    <img src={CartIcon} alt="Cart Icon" />
-                  </Button>
-                  <Button
-                    type="secondary"
-                    ariaLabel="Save to wishlist"
-                    onClick={() => console.log("Saving to wishlist...")}
-                  >
-                    <span>Save to Wishlist</span>
-                    <img src={WishlistIcon} alt="Wishlist Icon" />
-                  </Button>
+                  <div className="space-y-3">
+                    <div className="space-x-6">
+                      <span className="text-8xl font-semibold text-txt-main">
+                        {shoesDetail.price}
+                      </span>
+
+                      {shoesDetail.lastPrice && (
+                        <span className="text-sm font-semibold text-txt-gray line-through">
+                          {shoesDetail.lastPrice}
+                        </span>
+                      )}
+                    </div>
+                    <p>3 remaining in stock.</p>
+                  </div>
+                  <div className="flex gap-10 pt-3">
+                    <Button
+                      type="primary"
+                      ariaLabel="Add to cart"
+                      onClick={() => console.log("Adding to cart...")}
+                    >
+                      <span>Add to Cart</span>
+                      <img src={CartIcon} alt="Cart Icon" />
+                    </Button>
+                    <Button
+                      type="secondary"
+                      ariaLabel="Save to wishlist"
+                      onClick={() => console.log("Saving to wishlist...")}
+                    >
+                      <span>Save to Wishlist</span>
+                      <img src={WishlistIcon} alt="Wishlist Icon" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         )}
       </div>
