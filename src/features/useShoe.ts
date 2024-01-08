@@ -4,11 +4,14 @@ import { useParams } from "react-router-dom";
 
 function useShoe() {
   const { shoeId } = useParams();
-  const { isLoading, data: shoe } = useQuery({
+  const {
+    isFetching,
+    isLoading,
+    data: shoe,
+  } = useQuery({
     queryKey: ["shoe"],
     queryFn: () => getShoe(shoeId!),
   });
-  console.log(shoe);
-  return { isLoading, shoe };
+  return { isFetching, isLoading, shoe };
 }
 export default useShoe;

@@ -13,7 +13,7 @@ function LatestProduct() {
     <>
       {newShoeDetail.length < 1 && (
         <div className="flex h-[30rem] w-full max-w-7xl items-center justify-center self-center rounded-[2.5rem] border border-bd-gray bg-main-bg ">
-          <span className="text-2xl font-medium text-txt-main">
+          <span className="text-xl font-medium text-txt-gray">
             No data available!
           </span>
         </div>

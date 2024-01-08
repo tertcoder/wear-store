@@ -4,23 +4,35 @@ import StarIcon from "../assets/icons/Rate.svg";
 import Button from "../ui/Button";
 import Header from "../ui/Header";
 import Footer from "../ui/Footer";
-import Collections from "./home/Collections";
 import useShoe from "./useShoe";
 import Loading from "../ui/Loading";
+import { useNavigate } from "react-router-dom";
+
 function ShoesDetails() {
-  const { isLoading, shoe } = useShoe();
+  const navigate = useNavigate();
+  const { isFetching, isLoading, shoe } = useShoe();
   const shoesDetail = shoe ? shoe : null;
   const contentFallBack = (
     <div className="flex min-h-[34rem] w-full items-center justify-center rounded-[2.5rem] bg-main-bg text-2xl font-medium text-txt-main">
-      <Loading />
+      {(isLoading || isFetching) && <Loading />}
+
+      {!shoesDetail && (
+        <span className="text-xl font-medium text-txt-gray">
+          No data available!
+        </span>
+      )}
     </div>
   );
 
   return (
     <>
       <Header activePage="Store" />
-      <div className=" w-full max-w-7xl rounded-[2.5rem] border border-[#DFDAD5] shadow-shdw-main">
-        {!shoesDetail || isLoading ? (
+      <div className=" relative w-full max-w-7xl rounded-[2.5rem] border border-[#DFDAD5] shadow-shdw-main">
+        <button className="absolute left-4 top-4" onClick={() => navigate(-1)}>
+          Back
+        </button>
+
+        {!shoesDetail || isLoading || isFetching ? (
           contentFallBack
         ) : (
           <div className="grid min-h-[34rem] grid-cols-2 rounded-[2.5rem] bg-main-bg">
@@ -31,7 +43,7 @@ function ShoesDetails() {
               className="h-full w-full rounded-l-[2.5rem] object-cover"
             />
 
-            <div className="flex h-full items-center  border px-16 py-[4.5rem]">
+            <div className="flex h-full items-center px-16 py-[4.5rem]">
               <div className="flex flex-col gap-8">
                 <div>
                   <h2 className="text-[2.5rem] font-semibold text-txt-main">
@@ -78,7 +90,7 @@ function ShoesDetails() {
           </div>
         )}
       </div>
-      <Collections collectionTitle="Sneakers you may like" />
+      {/* <Collections collectionTitle="Sneakers you may like" /> */}
       <Footer />
     </>
   );

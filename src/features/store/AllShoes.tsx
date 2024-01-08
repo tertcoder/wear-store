@@ -9,21 +9,24 @@ import { useNavigate } from "react-router-dom";
 
 function AllShoes() {
   const { allShoes, isLoading } = useAllShoes();
+  const allCorrectedShoes = allShoes ? allShoes : [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
   if (isLoading) return <Loader />;
   return (
     <div className="flex w-full max-w-7xl flex-wrap gap-5 max-md:justify-center">
-      {allShoes?.map((shoe) => (
-        <Shoes
-          key={shoe.id}
-          id={shoe.id}
-          image={shoe.image}
-          name={shoe.name}
-          price={shoe.price}
-          className="max-md:h-[35rem]  max-md:w-[25rem]"
-        />
-      ))}
+      {allCorrectedShoes.length >= 1
+        ? allCorrectedShoes.map((shoe) => (
+            <Shoes
+              key={shoe.id}
+              id={shoe.id}
+              image={shoe.image}
+              name={shoe.name}
+              price={shoe.price}
+              className="max-md:h-[35rem]  max-md:w-[25rem]"
+            />
+          ))
+        : ""}
       <button
         onClick={() => {
           navigate("?newShoeIsOpen=true");
