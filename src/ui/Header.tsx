@@ -33,7 +33,7 @@ function Header({ activePage }: { activePage: string }) {
         </span>
       </button>
       {navMenuIsOpen && (
-        <Menu className="absolute top-10">
+        <Menu className="absolute top-10 z-10">
           <button
             onClick={() => setNavMenuIsOpen(false)}
             className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-bd-main bg-btn-gray-bg p-2 shadow-shdw-main"
@@ -76,7 +76,7 @@ function Header({ activePage }: { activePage: string }) {
         </span>
       </button>
       {detailIsOpen && (
-        <Menu className="absolute right-32 top-10">
+        <Menu className="absolute right-32 top-10 z-10">
           <button
             onClick={() => setDetailIsOpen(false)}
             className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-bd-main bg-btn-gray-bg p-2 shadow-shdw-main"
