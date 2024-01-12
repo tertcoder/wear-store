@@ -22,16 +22,19 @@ function ShoesDetails() {
     <>
       <Header activePage="Store" />
       <div className=" relative w-full max-w-7xl rounded-[2.5rem] border border-[#DFDAD5] shadow-shdw-main">
-        <button className="absolute left-4 top-4" onClick={() => navigate(-1)}>
+        <button
+          className="absolute left-4 top-4 rounded-3xl bg-btn-light-bg px-4 font-medium text-txt-gray"
+          onClick={() => navigate(-1)}
+        >
           Back
         </button>
 
         {isLoading || isFetching ? (
           contentFallBack
         ) : (
-          <div className="grid min-h-[34rem] grid-cols-2 rounded-[2.5rem] bg-main-bg">
+          <div className="grid min-h-[34rem] grid-cols-2 content-center rounded-[2.5rem] bg-main-bg">
             {!shoesDetail ? (
-              <span className="text-xl font-medium text-txt-gray">
+              <span className="text-center text-xl font-medium text-txt-gray">
                 No data available!
               </span>
             ) : (
@@ -43,9 +46,9 @@ function ShoesDetails() {
               />
             )}
             {!shoesDetail ? (
-              <span className="text-xl font-medium text-txt-gray">
+              <div className="text-center text-xl font-medium text-txt-gray">
                 No data available!
-              </span>
+              </div>
             ) : (
               <div className="flex h-full items-center px-16 py-[4.5rem]">
                 <div className="flex flex-col gap-8">
@@ -53,7 +56,7 @@ function ShoesDetails() {
                     <h2 className="text-[2.5rem] font-semibold text-txt-main">
                       {shoesDetail.name}
                     </h2>
-                    <span className="itemce flex gap-1">
+                    <span className="flex items-center gap-1">
                       4.5 <img src={StarIcon} alt="Star Icon" />
                     </span>
                   </div>
