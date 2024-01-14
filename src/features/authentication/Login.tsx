@@ -38,7 +38,7 @@ function Login() {
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main"
-              type="email"
+              type="text"
               placeholder="Enter your email address"
               {...register("email", {
                 required: "This field is required",
