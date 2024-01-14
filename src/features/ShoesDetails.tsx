@@ -23,10 +23,25 @@ function ShoesDetails() {
       <Header activePage="Store" />
       <div className=" relative w-full max-w-7xl rounded-[2.5rem] border border-[#DFDAD5] shadow-shdw-main">
         <button
-          className="absolute left-4 top-4 rounded-3xl bg-btn-light-bg px-4 font-medium text-txt-gray"
+          className="absolute left-4 top-4 rounded-3xl bg-btn-light-bg p-2  font-medium text-txt-gray"
           onClick={() => navigate(-1)}
         >
-          Back
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#766f6a"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-arrow-left-circle"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M16 12H8" />
+            <path d="m12 8-4 4 4 4" />
+          </svg>
         </button>
 
         {isLoading || isFetching ? (
