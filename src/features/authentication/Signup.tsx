@@ -1,8 +1,26 @@
 import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/icons/Google.svg";
 import FacebookIcon from "../../assets/icons/Facebook.svg";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type SignupDataType = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 
 function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<SignupDataType>();
+
+  const onSubmit: SubmitHandler<SignupDataType> = (data) => console.log(data);
+
   return (
     <div className="flex flex-col items-center gap-6 py-6">
       <div className="w-full max-w-md space-y-4 text-center font-medium text-txt-main">
@@ -12,9 +30,12 @@ function Signup() {
         <p>Wear the Trend - Sign Up for Sneaker Updates</p>
       </div>
       <div className="flex w-[28rem] flex-col gap-6  py-[0.625rem]">
-        <form className="w-full space-y-[1.125rem] ">
+        <form
+          className="w-full space-y-[1.125rem]"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex gap-2.5">
-            <div className="flex w-full flex-col gap-[0.625rem]">
+            <div className="relative flex w-full flex-col gap-[0.625rem]">
               <label
                 className="text-base font-medium text-txt-main"
                 htmlFor="firstname"
@@ -23,14 +44,20 @@ function Signup() {
               </label>
               <input
                 className="w-full rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
-                required
                 placeholder="Enter your firstname"
                 type="text"
-                name="firstname"
+                {...register("firstname", {
+                  required: "This field is required",
+                })}
                 id="firstname"
               />
+              {errors?.firstname?.message && (
+                <span className="absolute -bottom-5  text-sm font-medium text-red-400">
+                  *{errors?.firstname?.message}
+                </span>
+              )}
             </div>
-            <div className="flex w-full flex-col gap-[0.625rem]">
+            <div className="relative flex w-full flex-col gap-[0.625rem]">
               <label
                 className="text-base font-medium text-txt-main"
                 htmlFor="lastname"
@@ -39,15 +66,21 @@ function Signup() {
               </label>
               <input
                 className="w-full rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
-                required
                 placeholder="Enter your lastname"
                 type="text"
-                name="lastname"
+                {...register("lastname", {
+                  required: "This field is required",
+                })}
                 id="lastname"
               />
+              {errors?.lastname?.message && (
+                <span className="absolute -bottom-5  text-sm font-medium text-red-400">
+                  *{errors?.lastname?.message}
+                </span>
+              )}
             </div>
           </div>
-          <div className="flex w-full flex-col gap-[0.625rem]">
+          <div className="relative flex w-full flex-col gap-[0.625rem]">
             <label
               className="text-base font-medium text-txt-main"
               htmlFor="email"
@@ -56,14 +89,24 @@ function Signup() {
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main"
-              required
-              type="email"
+              type="text"
               placeholder="Enter your email address"
-              name="email"
+              {...register("email", {
+                required: "This field is required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Please provide a valid email address",
+                },
+              })}
               id="email"
             />
+            {errors?.email?.message && (
+              <span className="absolute -bottom-5  text-sm font-medium text-red-400">
+                *{errors?.email?.message}
+              </span>
+            )}
           </div>
-          <div className="flex w-full flex-col gap-[0.625rem]">
+          <div className="relative flex w-full flex-col gap-[0.625rem]">
             <label
               className="text-base font-medium text-txt-main"
               htmlFor="password"
@@ -72,14 +115,24 @@ function Signup() {
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
-              required
               placeholder="Enter your password"
               type="password"
-              name="password"
+              {...register("password", {
+                required: "This field is required",
+                minLength: {
+                  value: 8,
+                  message: "Password need a minimun of 8 characters",
+                },
+              })}
               id="password"
             />
+            {errors?.password?.message && (
+              <span className="absolute -bottom-5  text-sm font-medium text-red-400">
+                *{errors?.password?.message}
+              </span>
+            )}
           </div>
-          <div className="flex w-full flex-col gap-[0.625rem]">
+          <div className="relative flex w-full flex-col gap-[0.625rem]">
             <label
               className="text-base font-medium text-txt-main"
               htmlFor="confirm_password"
@@ -88,12 +141,20 @@ function Signup() {
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
-              required
               placeholder="Enter your password again"
               type="password"
-              name="confirm_password"
+              {...register("passwordConfirm", {
+                required: "This field is required",
+                validate: (value) =>
+                  value === getValues().password || "Password needs to match",
+              })}
               id="confirm_password"
             />
+            {errors?.passwordConfirm?.message && (
+              <span className="absolute -bottom-5  text-sm font-medium text-red-400">
+                *{errors?.passwordConfirm?.message}
+              </span>
+            )}
           </div>
           <div className="flex w-full flex-col gap-2.5 pt-2.5">
             <button className="flex items-center justify-center rounded-[0.625rem] border border-bd-main bg-btn-main-bg p-2.5 shadow-shdw-main">

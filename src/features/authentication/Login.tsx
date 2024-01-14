@@ -9,7 +9,11 @@ type LoginDataType = {
 };
 
 function Login() {
-  const { register, handleSubmit } = useForm<LoginDataType>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginDataType>();
   const onSubmit: SubmitHandler<LoginDataType> = (data) => console.log(data);
 
   return (
@@ -25,7 +29,7 @@ function Login() {
           className="w-full space-y-[1.125rem]"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="flex w-full flex-col gap-[0.625rem]">
+          <div className="relative flex w-full flex-col gap-[0.625rem]">
             <label
               className="text-base font-medium text-txt-main"
               htmlFor="email"
@@ -34,14 +38,24 @@ function Login() {
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main"
-              required
               type="email"
               placeholder="Enter your email address"
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: "This field is required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Please provide a valid email address",
+                },
+              })}
               id="email"
             />
+            {errors?.email?.message && (
+              <span className="absolute -bottom-5  text-sm font-medium text-red-400">
+                *{errors?.email?.message}
+              </span>
+            )}
           </div>
-          <div className="flex w-full flex-col gap-[0.625rem]">
+          <div className="relative flex w-full flex-col gap-[0.625rem]">
             <label
               className="text-base font-medium text-txt-main"
               htmlFor="password"
@@ -50,12 +64,16 @@ function Login() {
             </label>
             <input
               className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
-              required
               placeholder="Enter your password"
               type="password"
-              {...register("password", { required: true })}
+              {...register("password", { required: "This field is required" })}
               id="password"
             />
+            {errors?.password?.message && (
+              <span className="absolute bottom-0  text-sm font-medium text-red-400">
+                *{errors?.password?.message}
+              </span>
+            )}
             <div className="text-end text-xs text-txt-gray">
               Forgot password?{" "}
               <span className="cursor-pointer underline">Reset</span>
