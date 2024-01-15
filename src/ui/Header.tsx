@@ -15,12 +15,15 @@ import HistoryIcon from "../assets/icons/History.svg";
 import LogoutIcon from "../assets/icons/Logout.svg";
 import { useDispatch } from "react-redux";
 import { setCartIsOpen } from "../store/store";
+import { useLogout } from "../features/authentication/useLogout";
+import Spinner from "./Spinner";
 
 function Header({ activePage }: { activePage: string }) {
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
   const [detailIsOpen, setDetailIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { logout, isLoading } = useLogout();
   return (
     <nav className="flex w-full items-center justify-between">
       <button
@@ -128,12 +131,14 @@ function Header({ activePage }: { activePage: string }) {
           <Button
             ariaLabel="Logout"
             onClick={() => {
+              logout();
               setDetailIsOpen(false);
             }}
             type="small"
           >
             <img src={LogoutIcon} alt="Logout Icon" />
             <span className="text-lg font-medium">Logout</span>
+            {isLoading && <Spinner />}
           </Button>
         </Menu>
       )}

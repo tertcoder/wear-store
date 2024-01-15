@@ -20,7 +20,7 @@ function Login() {
     reset,
   } = useForm<LoginDataType>();
   const onSubmit: SubmitHandler<LoginDataType> = (data) => {
-    login(data, { onSettled: () => reset });
+    login(data, { onSettled: () => reset() });
   };
 
   return (
@@ -103,7 +103,7 @@ function Login() {
               )}
             >
               <span className="text-base font-semibold text-txt-main">
-                {isLoading ? "Signing in" : "Sign In"}
+                {isLoading ? "Signing in..." : "Sign In"}
               </span>
               {isLoading && <Spinner />}
             </button>
