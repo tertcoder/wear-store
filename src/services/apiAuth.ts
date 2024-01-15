@@ -1,6 +1,6 @@
 import supabase from "./supabase";
 
-export async function login({
+export async function loginApi({
   email,
   password,
 }: {

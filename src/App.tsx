@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ShoesDetails from "./features/ShoesDetails";
 import ErrorFallback from "./ui/ErrorFallback";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,11 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen />
         <RouterProvider router={router} />
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+        />
       </QueryClientProvider>
     </Provider>
   );

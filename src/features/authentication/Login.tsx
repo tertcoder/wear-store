@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/icons/Google.svg";
 import FacebookIcon from "../../assets/icons/Facebook.svg";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useLogin } from "./useLogin";
+import { twMerge } from "tailwind-merge";
+import Spinner from "../../ui/Spinner";
 
 type LoginDataType = {
   email: string;
@@ -9,12 +12,16 @@ type LoginDataType = {
 };
 
 function Login() {
+  const { login, isLoading } = useLogin();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<LoginDataType>();
-  const onSubmit: SubmitHandler<LoginDataType> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginDataType> = (data) => {
+    login(data, { onSettled: () => reset });
+  };
 
   return (
     <div className="flex flex-col items-center gap-6 py-6">
@@ -37,7 +44,11 @@ function Login() {
               Email address
             </label>
             <input
-              className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main"
+              disabled={isLoading}
+              className={twMerge(
+                `rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray  focus:border-bd-main`,
+                `${isLoading ? "cursor-not-allowed" : ""}`,
+              )}
               type="text"
               placeholder="Enter your email address"
               {...register("email", {
@@ -63,7 +74,11 @@ function Login() {
               Password
             </label>
             <input
-              className="rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main"
+              disabled={isLoading}
+              className={twMerge(
+                "rounded-[0.625rem] border border-bd-gray bg-main-bg p-2.5 text-txt-main outline-none placeholder:text-txt-gray focus:border-bd-main",
+                `${isLoading ? "cursor-not-allowed" : ""}`,
+              )}
               placeholder="Enter your password"
               type="password"
               {...register("password", { required: "This field is required" })}
@@ -80,10 +95,17 @@ function Login() {
             </div>
           </div>
           <div className="flex w-full flex-col gap-[0.625rem]">
-            <button className="flex items-center justify-center rounded-[0.625rem] border border-bd-main bg-btn-main-bg p-2.5 shadow-shdw-main">
+            <button
+              disabled={isLoading}
+              className={twMerge(
+                "flex items-center justify-center gap-2 rounded-[0.625rem] border border-bd-main bg-btn-main-bg p-2.5 shadow-shdw-main",
+                `${isLoading ? "cursor-not-allowed" : ""}`,
+              )}
+            >
               <span className="text-base font-semibold text-txt-main">
-                Sign In
+                {isLoading ? "Signing in" : "Sign In"}
               </span>
+              {isLoading && <Spinner />}
             </button>
             <div className="text-center text-xs text-txt-gray">
               I don’t have an account?{" "}
@@ -97,13 +119,25 @@ function Login() {
           <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-bd-gray bg-main-bg px-2.5 text-sm font-normal text-txt-gray">
             or
           </span>
-          <button className="flex items-center justify-center  gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg p-2.5 shadow-shdw-main">
+          <button
+            disabled={isLoading}
+            className={twMerge(
+              "flex items-center justify-center  gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg p-2.5 shadow-shdw-main",
+              `${isLoading ? "cursor-not-allowed" : ""}`,
+            )}
+          >
             <span className="text-base font-semibold text-txt-main">
               Log in with Google
             </span>
             <img src={GoogleIcon} alt="Google Logo" />
           </button>
-          <button className="flex items-center justify-center  gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg p-2.5 shadow-shdw-main">
+          <button
+            disabled={isLoading}
+            className={twMerge(
+              "flex items-center justify-center  gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg p-2.5 shadow-shdw-main",
+              `${isLoading ? "cursor-not-allowed" : ""}`,
+            )}
+          >
             <span className="text-base font-semibold text-txt-main">
               Log in with Facebook
             </span>

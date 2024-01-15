@@ -2,11 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBrands } from "../../services/apiShoes";
 
 function useBrandItems() {
-  const {
-    isLoading,
-    data: availableBrands,
-    error,
-  } = useQuery({
+  const { isLoading, data: availableBrands } = useQuery({
     queryKey: ["brands"],
     queryFn: getBrands,
   });
