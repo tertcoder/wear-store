@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { setCartIsOpen } from "../store/store";
 import { useLogout } from "../features/authentication/useLogout";
 import Spinner from "./Spinner";
+import UserAvatar from "../features/authentication/UserAvatar";
 
 function Header({ activePage }: { activePage: string }) {
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
@@ -73,10 +74,7 @@ function Header({ activePage }: { activePage: string }) {
         onClick={() => setDetailIsOpen(true)}
         className="flex items-center gap-4 rounded-full border border-bd-main bg-btn-gray-bg pr-4 shadow-shdw-main"
       >
-        <img src={UserImg} alt="User Name" className="h-14 w-14 rounded-full" />
-        <span className="font-sans text-lg font-semibold text-txt-main">
-          tertcoder
-        </span>
+        <UserAvatar />
       </button>
       {detailIsOpen && (
         <Menu className="absolute right-32 top-10 z-10">
@@ -86,16 +84,7 @@ function Header({ activePage }: { activePage: string }) {
           >
             <img src={CloseIcon} alt="Close Menu" />
           </button>
-          <Button
-            ariaLabel="My Account"
-            onClick={() => {
-              setDetailIsOpen(false);
-            }}
-            type="small"
-          >
-            <img src={UserIcon} alt="Home Icon" />
-            <span className="text-lg font-medium">My Account</span>
-          </Button>
+
           <Button
             ariaLabel="My Cart"
             onClick={() => {
@@ -118,16 +107,7 @@ function Header({ activePage }: { activePage: string }) {
             <img src={WishlistIcon} alt="Cart Icon" />
             <span className="text-lg font-medium">My Wishlist</span>
           </Button>
-          <Button
-            ariaLabel="History"
-            onClick={() => {
-              setDetailIsOpen(false);
-            }}
-            type="small"
-          >
-            <img src={HistoryIcon} alt="History Icon" />
-            <span className="text-lg font-medium">History</span>
-          </Button>
+
           <Button
             ariaLabel="Logout"
             onClick={() => {
