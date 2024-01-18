@@ -1,15 +1,24 @@
 import { useEffect, useRef } from "react";
-import Line from "../assets/icons/smll.svg";
+import Line from "../../assets/icons/smll.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { cartIsOpen, setCartIsOpen } from "../store/store";
+import { cartIsOpen, setCartIsOpen } from "../../store/store";
 import { twMerge } from "tailwind-merge";
 import { useSearchParams } from "react-router-dom";
+import { useCart } from "./useCart"; 
+import Loading from "../../ui/Loading";
+import useAllShoes from "../store/useAllShoes";
 
 function Cart() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isOpen = useSelector(cartIsOpen);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const {allShoes,isLoading:isLoadingShoe}=useAllShoes();
+  const { cartItems, isLoading } = useCart();
+  const cartShoes = cartItems || null;
+  const allShoesArray=allShoes||null
+  const shoesInCart=cartShoes&&allShoesArray?:[]
 
   useEffect(() => {
     if (searchParams.get("myCartIsOpen") === "true")
@@ -38,10 +47,7 @@ function Cart() {
         `overlay fixed inset-0 z-10 flex origin-bottom items-end justify-center bg-neutral-400/10 backdrop-blur-[2px] duration-150`,
         `${isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}`,
       )}
-      // className={twMerge(
-      //   `overlay fixed inset-0 z-10 flex items-end justify-center bg-neutral-400/10 backdrop-blur-[2px]`,
-      //   `${isOpen ? "opacity-1 translate-y-0" : "translate-y-full opacity-0"}`,
-      // )}
+ 
     >
       <div className="relative flex h-full max-h-[36rem] w-full max-w-7xl flex-col rounded-t-[2.5rem] border border-bd-main bg-main-bg shadow-shdw-main">
         <img
@@ -62,7 +68,9 @@ function Cart() {
           </div>
         </div>
         <div className="flex-1 space-y-5 overflow-y-auto px-16 py-8">
-          Cart Items...
+          {isLoading && <Loading />}
+          {!isLoading && !cartShoes && "No Items In Cart ..."}
+          {cartShoes && cartShoes.map((item) => <div>{item.shoe_id}</div>)}
         </div>
         <div className="flex border-t border-bd-gray px-16 py-4 md:hidden">
           <div className="flex w-full flex-col gap-6">

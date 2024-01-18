@@ -4,7 +4,7 @@ import Collections from "../features/home/Collections";
 import LatestProduct from "../features/home/LatestProduct";
 import Header from "../ui/Header";
 import Footer from "../ui/Footer";
-import Cart from "../features/Cart";
+import Cart from "../features/cart/Cart";
 
 function Home() {
   return (

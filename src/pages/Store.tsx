@@ -3,7 +3,7 @@ import AllShoes from "../features/store/AllShoes";
 import Filtering from "../features/store/Filtering";
 import Heading from "../features/store/Heading";
 import Header from "../ui/Header";
-import Cart from "../features/Cart";
+import Cart from "../features/cart/Cart";
 
 function Store() {
   return (
