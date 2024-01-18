@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import HeartIcon from "../assets/icons/Wishlist.svg";
 import CartIcon from "../assets/icons/Cart.svg";
+import useAddToCart from "../hooks/useAddToCart";
+import { useUser } from "../features/authentication/useUser";
+import toast, { Toaster } from "react-hot-toast";
 function Shoes({
   id,
   image,
@@ -15,6 +18,9 @@ function Shoes({
   price: number;
   className?: string;
 }) {
+  const { addToCart } = useAddToCart();
+  const { user } = useUser();
+  const userId = user!.id;
   return (
     <div
       id={id}
@@ -28,6 +34,7 @@ function Shoes({
         `${className}`,
       )}
     >
+      {/* <Toaster position="top-center" /> */}
       <Link
         to={`/store/${id}`}
         className="flex flex-col gap-[0.3125rem] rounded-rd-main bg-[#fff9f5] p-2.5  shadow-shdw-main backdrop-blur-[2px]"
@@ -38,12 +45,19 @@ function Shoes({
       <div className="flex items-center justify-between pt-2">
         {/* Two Component to refactor */}
 
-        <button className="flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg px-3 py-2 shadow-shdw-main">
+        <button
+          onClick={() => {
+            toast.loading("Adding to cart...", { duration: 1000 });
+            addToCart({ shoe_id: id, user_id: userId });
+          }}
+          className="flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg px-3 py-2 shadow-shdw-main"
+        >
           <span className="text-sm font-semibold text-txt-main">
             Add to Cart
           </span>
           <img src={CartIcon} alt="Add to Cart Icon" />
         </button>
+
         <button className="flex h-[2.0625rem] w-[2.0625rem] items-center justify-center rounded-rd-main border border-bd-main bg-btn-white-bg px-0.5 py-[0.1875rem] shadow-shdw-main">
           <img src={HeartIcon} alt="Add to Wishlist Icon" />
         </button>

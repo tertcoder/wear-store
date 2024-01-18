@@ -3,11 +3,15 @@ import useLatestProduct from "./useLatestProduct";
 import CartIcon from "../../assets/icons/Cart.svg";
 import WishlistIcon from "../../assets/icons/Wishlist.svg";
 import StarIcon from "../../assets/icons/Rate.svg";
+import useAddToCart from "../../hooks/useAddToCart";
+import { useUser } from "../authentication/useUser";
+import toast from "react-hot-toast";
 
 function LatestProduct() {
+  const { user } = useUser();
+  const { addToCart } = useAddToCart();
   const { isLoading, newShoe } = useLatestProduct();
   const newShoeDetail = newShoe ? newShoe : [];
-  console.log(newShoeDetail);
   if (isLoading) return <Loader />;
   return (
     <>
@@ -51,7 +55,13 @@ function LatestProduct() {
             </div>
             <div className="flex w-full flex-wrap gap-x-10 gap-y-5 py-3">
               <button
-                onClick={() => console.log("Adding to cart...")}
+                onClick={() => {
+                  toast.loading("Adding to cart...", { duration: 1000 });
+                  addToCart({
+                    shoe_id: newShoeDetail[0].id,
+                    user_id: user!.id,
+                  });
+                }}
                 className="btn flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-main-bg px-9 py-[0.94rem] font-semibold text-txt-main shadow-shdw-main"
               >
                 <span>Add to Cart</span>

@@ -6,7 +6,6 @@ function useLatestProduct() {
     queryKey: ["newShoe"],
     queryFn: getLatestShoe,
   });
-  console.log(newShoe);
   return { isLoading, newShoe };
 }
 export default useLatestProduct;
