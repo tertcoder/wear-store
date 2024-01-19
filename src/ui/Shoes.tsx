@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { Link, useParams } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+import toast from "react-hot-toast";
+
 import HeartIcon from "../assets/icons/Wishlist.svg";
 import CartIcon from "../assets/icons/Cart.svg";
 import useAddToCart from "../hooks/useAddToCart";
 import { useUser } from "../features/authentication/useUser";
-import toast from "react-hot-toast";
 import { useCartShoes } from "../features/cart/useCartShoes";
 function Shoes({
   id,
@@ -19,10 +21,17 @@ function Shoes({
   price: number;
   className?: string;
 }) {
+  // const queryClient = useQueryClient();
+  // const { shoeId } = useParams();
   const { addToCart } = useAddToCart();
   const { user } = useUser();
-  const userId = user!.id;
+  const userId = user!.id!;
   const { shoesInCart } = useCartShoes();
+
+  // useEffect(() => {
+  //   if (shoeId) queryClient.fetchQuery({ queryKey: ["shoe"] });
+  // }, [shoeId, queryClient]);
+
   return (
     <div
       id={id}

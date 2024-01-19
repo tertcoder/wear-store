@@ -7,11 +7,20 @@ import Footer from "../ui/Footer";
 import useShoe from "./useShoe";
 import Loading from "../ui/Loading";
 import { useNavigate } from "react-router-dom";
+import Collections from "./home/Collections";
+import { useUser } from "./authentication/useUser";
+import { useCartShoes } from "./cart/useCartShoes";
+import useAddToCart from "../hooks/useAddToCart";
+import toast from "react-hot-toast";
 
 function ShoesDetails() {
   const navigate = useNavigate();
   const { isFetching, isLoading, shoe } = useShoe();
   const shoesDetail = shoe ? shoe : null;
+  const { addToCart } = useAddToCart();
+  const { user } = useUser();
+  const userId = user!.id!;
+  const { shoesInCart } = useCartShoes();
   const contentFallBack = (
     <div className="flex min-h-[34rem] w-full items-center justify-center rounded-[2.5rem] bg-main-bg text-2xl font-medium text-txt-main">
       {(isLoading || isFetching) && <Loading />}
@@ -101,7 +110,26 @@ function ShoesDetails() {
                     <Button
                       type="secondary"
                       ariaLabel="Save to wishlist"
-                      onClick={() => console.log("Saving to wishlist...")}
+                      onClick={() => {
+                        const itemAlready = shoesInCart
+                          ? shoesInCart.find(
+                              (shoe) => shoe?.id === shoesDetail.id,
+                            )
+                          : [null];
+                        if (!itemAlready) {
+                          toast.loading("Adding to cart...", {
+                            duration: 3000,
+                          });
+                          addToCart({
+                            shoe_id: shoesDetail.id,
+                            user_id: userId,
+                          });
+                        } else {
+                          toast.error("Already in cart...", {
+                            duration: 5000,
+                          });
+                        }
+                      }}
                     >
                       <span>Save to Wishlist</span>
                       <img src={WishlistIcon} alt="Wishlist Icon" />
@@ -113,7 +141,7 @@ function ShoesDetails() {
           </div>
         )}
       </div>
-      {/* <Collections collectionTitle="Sneakers you may like" /> */}
+      <Collections collectionTitle="Sneakers you may like" />
       <Footer />
     </>
   );
