@@ -7,7 +7,7 @@ function Hero() {
   const navigate = useNavigate();
   return (
     <div className="hero-on grid w-full  overflow-hidden rounded-[2.5rem] lg2:grid-cols-[1fr_500px] lg2:bg-hero-bg">
-      <div className="flex items-center justify-center gap-2.5 p-14">
+      <div className="flex items-center gap-2.5 p-14">
         <div className="flex max-w-xl flex-col items-center gap-[3.2rem] lg2:max-w-md lg2:items-start ">
           <div className="relative flex flex-col gap-5 text-center lg2:text-start">
             <h1 className="text-[2.5rem] font-bold leading-[3rem] text-orange-100 lg2:font-semibold lg2:tracking-wider lg2:text-txt-main">

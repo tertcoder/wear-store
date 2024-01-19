@@ -31,3 +31,12 @@ export async function loadInCart(): Promise<CartInterface[]> {
 
   return data;
 }
+
+export async function deleteInCartItem(id: number) {
+  const { error } = await supabase.from("cart").delete().eq("id", id);
+  if (error) throw new Error("Could not be deleted. Try Again!");
+}
+export async function deleteAllCartItems() {
+  const { error } = await supabase.from("cart").delete();
+  if (error) throw new Error("Something went wrong. Try Again!");
+}

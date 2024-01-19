@@ -4,7 +4,8 @@ import HeartIcon from "../assets/icons/Wishlist.svg";
 import CartIcon from "../assets/icons/Cart.svg";
 import useAddToCart from "../hooks/useAddToCart";
 import { useUser } from "../features/authentication/useUser";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { useCartShoes } from "../features/cart/useCartShoes";
 function Shoes({
   id,
   image,
@@ -21,6 +22,7 @@ function Shoes({
   const { addToCart } = useAddToCart();
   const { user } = useUser();
   const userId = user!.id;
+  const { shoesInCart } = useCartShoes();
   return (
     <div
       id={id}
@@ -47,8 +49,19 @@ function Shoes({
 
         <button
           onClick={() => {
-            toast.loading("Adding to cart...", { duration: 1000 });
-            addToCart({ shoe_id: id, user_id: userId });
+            const itemAlready = shoesInCart
+              ? shoesInCart.find((shoe) => shoe?.id === id)
+              : [null];
+            if (!itemAlready) {
+              toast.loading("Adding to cart...", {
+                duration: 3000,
+              });
+              addToCart({ shoe_id: id, user_id: userId });
+            } else {
+              toast.error("Already in cart...", {
+                duration: 5000,
+              });
+            }
           }}
           className="flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg px-3 py-2 shadow-shdw-main"
         >
