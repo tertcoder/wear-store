@@ -12,6 +12,7 @@ import { useUser } from "./authentication/useUser";
 import { useCartShoes } from "./cart/useCartShoes";
 import useAddToCart from "../hooks/useAddToCart";
 import toast from "react-hot-toast";
+import Cart from "./cart/Cart";
 
 function ShoesDetails() {
   const navigate = useNavigate();
@@ -143,6 +144,7 @@ function ShoesDetails() {
       </div>
       <Collections collectionTitle="Sneakers you may like" />
       <Footer />
+      <Cart />
     </>
   );
 }

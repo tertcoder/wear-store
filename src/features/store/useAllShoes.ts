@@ -4,7 +4,7 @@ import { getAllShoes } from "../../services/apiShoes";
 function useAllShoes() {
   const { isLoading, data: allShoes } = useQuery({
     queryKey: ["AllShoes"],
-    queryFn: getAllShoes,
+    queryFn: ({ brand }: { brand: string }) => getAllShoes({ brand }),
   });
   return { isLoading, allShoes };
 }

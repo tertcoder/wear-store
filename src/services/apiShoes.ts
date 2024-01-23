@@ -1,8 +1,16 @@
 import { shoesInterface } from "../utils/data";
 import supabase from "./supabase";
 
-export async function getAllShoes(): Promise<shoesInterface[]> {
-  const { data, error } = await supabase.from("shoes").select("*");
+export async function getAllShoes({
+  brand,
+}: {
+  brand: string;
+}): Promise<shoesInterface[]> {
+  let query = supabase.from("shoes").select("*");
+
+  if (brand) query = query.eq("brand", brand);
+
+  const { data, error } = await query;
 
   if (error) {
     console.error(error);

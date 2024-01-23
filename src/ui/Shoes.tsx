@@ -1,5 +1,4 @@
-import { useQueryClient } from "@tanstack/react-query";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import toast from "react-hot-toast";
 
@@ -21,17 +20,14 @@ function Shoes({
   price: number;
   className?: string;
 }) {
-  // const queryClient = useQueryClient();
-  // const { shoeId } = useParams();
   const { addToCart } = useAddToCart();
   const { user } = useUser();
   const userId = user!.id!;
   const { shoesInCart } = useCartShoes();
-
-  // useEffect(() => {
-  //   if (shoeId) queryClient.fetchQuery({ queryKey: ["shoe"] });
-  // }, [shoeId, queryClient]);
-
+  let inCart: boolean = false;
+  if (shoesInCart)
+    inCart = shoesInCart!.map((shoe) => shoe!.id!.includes(id))[0];
+  else inCart = false;
   return (
     <div
       id={id}
@@ -75,7 +71,7 @@ function Shoes({
           className="flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-white-bg px-3 py-2 shadow-shdw-main"
         >
           <span className="text-sm font-semibold text-txt-main">
-            Add to Cart
+            {inCart ? "In Cart" : " Add to Cart"}
           </span>
           <img src={CartIcon} alt="Add to Cart Icon" />
         </button>
