@@ -120,8 +120,7 @@ function ShoesDetails() {
                           ? shoesInCart.find(
                               (shoe) => shoe?.id === shoesDetail.id,
                             )
-                          : [null];
-                        console.log(itemAlready);
+                          : [null]; 
                         if (!itemAlready) {
                           toast.loading("Adding to cart...", {
                             duration: 3000,
