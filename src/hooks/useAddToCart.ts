@@ -6,14 +6,14 @@ import { insertInCart } from "../services/apiCart";
 function useAddToCart() {
   const queryClient = useQueryClient();
 
-  const { mutate: addToCart } = useMutation({
+  const { mutate: addToCart, status } = useMutation({
     mutationFn: insertInCart,
     onSuccess: () => {
       toast.success("Added to cart");
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
-  return { addToCart };
+  return { addToCart, status };
 }
 
 export default useAddToCart;

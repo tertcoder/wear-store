@@ -13,15 +13,26 @@ import { useCartShoes } from "./cart/useCartShoes";
 import useAddToCart from "../hooks/useAddToCart";
 import toast from "react-hot-toast";
 import Cart from "./cart/Cart";
+import { useEffect, useRef } from "react";
 
 function ShoesDetails() {
   const navigate = useNavigate();
   const { isFetching, isLoading, shoe } = useShoe();
   const shoesDetail = shoe ? shoe : null;
-  const { addToCart } = useAddToCart();
+  const { addToCart, status } = useAddToCart();
   const { user } = useUser();
   const userId = user!.id!;
   const { shoesInCart } = useCartShoes();
+
+  const inCart = useRef<boolean>(false);
+  useEffect(() => {
+    if (shoesInCart && shoesDetail)
+      inCart.current = shoesInCart!.map((shoe) =>
+        shoe!.id!.includes(shoesDetail.id),
+      )[0];
+    // inCart.current=checkIn;
+  }, [shoesInCart, shoesDetail]);
+
   const contentFallBack = (
     <div className="flex min-h-[34rem] w-full items-center justify-center rounded-[2.5rem] bg-main-bg text-2xl font-medium text-txt-main">
       {(isLoading || isFetching) && <Loading />}
@@ -34,7 +45,7 @@ function ShoesDetails() {
       <div className=" relative  w-full max-w-7xl rounded-[2.5rem] border border-[#DFDAD5] shadow-shdw-main">
         <button
           className="absolute left-4 top-4 rounded-3xl bg-btn-light-bg p-2  font-medium text-txt-gray"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/store", { replace: true })}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +53,7 @@ function ShoesDetails() {
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#766f6a"
+            stroke="#28231c"
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -103,20 +114,14 @@ function ShoesDetails() {
                     <Button
                       type="primary"
                       ariaLabel="Add to cart"
-                      onClick={() => console.log("Adding to cart...")}
-                    >
-                      <span>Add to Cart</span>
-                      <img src={CartIcon} alt="Cart Icon" />
-                    </Button>
-                    <Button
-                      type="secondary"
-                      ariaLabel="Save to wishlist"
+                      disabled={status === "pending" ? true : false}
                       onClick={() => {
                         const itemAlready = shoesInCart
                           ? shoesInCart.find(
                               (shoe) => shoe?.id === shoesDetail.id,
                             )
                           : [null];
+                        console.log(itemAlready);
                         if (!itemAlready) {
                           toast.loading("Adding to cart...", {
                             duration: 3000,
@@ -131,6 +136,17 @@ function ShoesDetails() {
                           });
                         }
                       }}
+                    >
+                      <span>
+                        {" "}
+                        {inCart.current ? "In Cart" : " Add to Cart"}
+                      </span>
+                      <img src={CartIcon} alt="Cart Icon" />
+                    </Button>
+                    <Button
+                      onClick={() => console.log("Adding to cart...")}
+                      type="secondary"
+                      ariaLabel="Save to wishlist"
                     >
                       <span>Save to Wishlist</span>
                       <img src={WishlistIcon} alt="Wishlist Icon" />

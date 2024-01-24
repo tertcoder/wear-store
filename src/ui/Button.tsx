@@ -6,11 +6,13 @@ function Button({
   type,
   onClick,
   ariaLabel,
+  disabled = false,
 }: {
   children: ReactNode;
   type: string;
   onClick: () => void;
   ariaLabel: string;
+  disabled?: boolean;
 }) {
   const base =
     "btn flex items-center flex-shrink-0 justify-center gap-2.5 rounded-[0.625rem] border border-bd-main px-9 py-[0.94rem] font-semibold text-txt-main shadow-shdw-main";
@@ -27,6 +29,7 @@ function Button({
         aria-label={ariaLabel}
         onClick={onClick}
         className={twMerge(small)}
+        disabled={disabled}
       >
         {children}
       </button>

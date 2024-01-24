@@ -1,4 +1,3 @@
-import Loader from "../../ui/Loader";
 import useLatestProduct from "./useLatestProduct";
 import CartIcon from "../../assets/icons/Cart.svg";
 import WishlistIcon from "../../assets/icons/Wishlist.svg";
@@ -6,16 +5,31 @@ import StarIcon from "../../assets/icons/Rate.svg";
 import useAddToCart from "../../hooks/useAddToCart";
 import { useUser } from "../authentication/useUser";
 import toast from "react-hot-toast";
+import Loading from "../../ui/Loading";
+import { useCartShoes } from "../cart/useCartShoes";
 
 function LatestProduct() {
   const { user } = useUser();
   const { addToCart } = useAddToCart();
   const { isLoading, newShoe } = useLatestProduct();
   const newShoeDetail = newShoe ? newShoe : [];
-  if (isLoading) return <Loader />;
+  const { shoesInCart } = useCartShoes();
+
+  let inCart: boolean = false;
+  if (shoesInCart && newShoeDetail.length > 0)
+    inCart = shoesInCart!.map((shoe) =>
+      shoe!.id!.includes(newShoeDetail[0].id),
+    )[0];
+  else inCart = false;
+
   return (
     <>
-      {newShoeDetail.length < 1 && (
+      {isLoading && (
+        <div className="flex h-[30rem] w-full max-w-7xl items-center justify-center self-center rounded-[2.5rem] border border-bd-gray bg-main-bg ">
+          <Loading />
+        </div>
+      )}
+      {!isLoading && newShoeDetail.length < 1 && (
         <div className="flex h-[30rem] w-full max-w-7xl items-center justify-center self-center rounded-[2.5rem] border border-bd-gray bg-main-bg ">
           <span className="text-xl font-medium text-txt-gray">
             No data available!
@@ -56,15 +70,29 @@ function LatestProduct() {
             <div className="flex w-full flex-wrap gap-x-10 gap-y-5 py-3">
               <button
                 onClick={() => {
-                  toast.loading("Adding to cart...", { duration: 1000 });
-                  addToCart({
-                    shoe_id: newShoeDetail[0].id,
-                    user_id: user!.id,
-                  });
+                  const itemAlready = shoesInCart
+                    ? shoesInCart.find(
+                        (shoe) => shoe?.id === newShoeDetail[0].id,
+                      )
+                    : [null];
+                  console.log(itemAlready);
+                  if (!itemAlready) {
+                    toast.loading("Adding to cart...", {
+                      duration: 3000,
+                    });
+                    addToCart({
+                      shoe_id: newShoeDetail[0].id,
+                      user_id: user!.id,
+                    });
+                  } else {
+                    toast.error("Already in cart...", {
+                      duration: 5000,
+                    });
+                  }
                 }}
                 className="btn flex items-center justify-center gap-2.5 rounded-[0.625rem] border border-bd-main bg-btn-main-bg px-9 py-[0.94rem] font-semibold text-txt-main shadow-shdw-main"
               >
-                <span>Add to Cart</span>
+                <span> {inCart ? "In Cart" : " Add to Cart"}</span>
                 <img src={CartIcon} alt="Cart Icon" />
               </button>
               <button
