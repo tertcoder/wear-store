@@ -11,7 +11,7 @@ import CollectionItems from "./CollectionItems";
 function Collections({
   collectionTitle = "Our Collection",
 }: {
-  collectionTitle: string;
+  collectionTitle?: string;
 }) {
   const { scrollRef, prevMove, nextMove } = useScrollXSmooth();
   return (
