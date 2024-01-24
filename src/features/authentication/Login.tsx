@@ -51,6 +51,7 @@ function Login() {
               )}
               type="text"
               placeholder="Enter your email address"
+              defaultValue="tbontertius@gmail.com"
               {...register("email", {
                 required: "This field is required",
                 pattern: {
@@ -81,6 +82,7 @@ function Login() {
               )}
               placeholder="Enter your password"
               type="password"
+              defaultValue="tuyituyi"
               {...register("password", { required: "This field is required" })}
               id="password"
             />
