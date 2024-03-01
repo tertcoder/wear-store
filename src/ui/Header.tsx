@@ -15,13 +15,16 @@ import { setCartIsOpen } from "../store/store";
 import { useLogout } from "../features/authentication/useLogout";
 import Spinner from "./Spinner";
 import UserAvatar from "../features/authentication/UserAvatar";
+import { useUser } from "../features/authentication/useUser";
 
 function Header({ activePage }: { activePage: string }) {
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
   const [detailIsOpen, setDetailIsOpen] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { logout, isLoading } = useLogout();
+  const { user } = useUser();
   return (
     <nav className="flex w-full items-center justify-between">
       <button
@@ -67,12 +70,23 @@ function Header({ activePage }: { activePage: string }) {
       )}
 
       <img src={Logo} alt="WearStore Logo Icon" className="w-28" />
-      <button
-        onClick={() => setDetailIsOpen(true)}
-        className="flex items-center gap-4 rounded-full border border-bd-main bg-btn-gray-bg pr-4 shadow-shdw-main"
-      >
-        <UserAvatar />
-      </button>
+      {user ? (
+        <button
+          onClick={() => setDetailIsOpen(true)}
+          className="flex items-center gap-4 rounded-full border border-bd-main bg-btn-gray-bg pr-4 shadow-shdw-main"
+        >
+          <UserAvatar />
+        </button>
+      ) : (
+        <button
+          onClick={() => navigate("/login")}
+          className="flex items-center gap-4 rounded-full border border-bd-main bg-btn-gray-bg pr-4 shadow-shdw-main"
+        >
+          <span className="font-sans text-lg font-semibold text-txt-main">
+            Log In
+          </span>
+        </button>
+      )}
       {detailIsOpen && (
         <Menu className="absolute right-32 top-10 z-10">
           <button

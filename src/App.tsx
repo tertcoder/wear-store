@@ -12,7 +12,7 @@ import { store } from "./store/store";
 import ShoesDetails from "./features/ShoesDetails";
 import ErrorFallback from "./ui/ErrorFallback";
 import { Toaster } from "react-hot-toast";
-import ProtectedRoute from "./ui/ProtectedRoute";
+// import ProtectedRoute from "./ui/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,9 +30,9 @@ const router = createBrowserRouter([
   },
   {
     element: (
-      <ProtectedRoute>
-        <AppLayout />
-      </ProtectedRoute>
+      // <ProtectedRoute>
+      <AppLayout />
+      // </ProtectedRoute>
     ),
     children: [
       {

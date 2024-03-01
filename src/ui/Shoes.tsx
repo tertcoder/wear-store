@@ -22,7 +22,7 @@ function Shoes({
 }) {
   const { addToCart } = useAddToCart();
   const { user } = useUser();
-  const userId = user!.id!;
+  const userId = user ? user.id! : null;
   const { shoesInCart } = useCartShoes();
   let inCart: boolean = false;
   if (shoesInCart)
@@ -54,6 +54,7 @@ function Shoes({
 
         <button
           onClick={() => {
+            if (!user) return;
             const itemAlready = shoesInCart
               ? shoesInCart.find((shoe) => shoe?.id === id)
               : [null];
@@ -61,7 +62,7 @@ function Shoes({
               toast.loading("Adding to cart...", {
                 duration: 3000,
               });
-              addToCart({ shoe_id: id, user_id: userId });
+              addToCart({ shoe_id: id, user_id: userId! });
             } else {
               toast.error("Already in cart...", {
                 duration: 5000,
