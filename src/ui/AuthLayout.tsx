@@ -11,7 +11,7 @@ function AuthLayout() {
         <div className="flex items-center justify-center gap-6 py-[1.125rem]">
           <NavLink
             to="/login"
-            className="navAuth font-semibold shadow-shdw-main"
+            className="navAuth p-4 font-semibold shadow-shdw-main"
           >
             Login
           </NavLink>
